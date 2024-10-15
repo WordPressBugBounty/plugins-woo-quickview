@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 6.6.1
-WC tested up to: 9.2.3
-Stable tag: 2.2.9
+Tested up to: 6.6.2
+WC tested up to: 9.3.3
+Stable tag: 2.2.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,11 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.10 - Oct 15, 2024 =
+* Fix: The PHP 7.2 compatibility issue.
+* Tested: WordPress 6.6.2 compatibility.
+* Tested: WooCommerce 9.3.3 compatibility.
 
 = 2.2.9 - Sep 04, 2024 =
 * Fix: The add to cart in a quick view was clickable before selecting a variation.

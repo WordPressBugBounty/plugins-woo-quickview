@@ -43,7 +43,7 @@ class SP_WQV_Functions {
 				'<strong>',
 				'</strong>',
 				'<span class="spwpcp-footer-text-star">★★★★★</span> <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/?filter=5#new-post" target="_blank">',
-				'</a>',
+				'</a>'
 			);
 		}
 

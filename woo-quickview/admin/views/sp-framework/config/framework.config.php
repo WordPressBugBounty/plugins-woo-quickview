@@ -513,7 +513,7 @@ SP_WQV_Framework::createSection(
 					/* translators: 1: start link and strong tag, 2: close tag. */
 					__( 'To unlock the social share and drag & drop sorting ability, %1$sUpgrade To Pro!%2$s', 'woo-quickview' ),
 					'<a href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1" target="_blank"><strong>',
-					'</strong></a>',
+					'</strong></a>'
 				),
 			),
 

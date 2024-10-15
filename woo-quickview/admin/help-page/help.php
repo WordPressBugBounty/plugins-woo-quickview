@@ -168,6 +168,8 @@ class Woo_Quick_View_Help {
 						$image_type = 'jpg';
 						break;
 					case 'location-weather':
+					case 'testimonial-free':
+					case 'easy-accordion-free':
 					case 'gallery-slider-for-woocommerce':
 						$image_type = 'gif';
 						break;
@@ -694,7 +696,7 @@ class Woo_Quick_View_Help {
 					<div class="wooqv-our-plugin-list">
 						<h3 class="wooqv-section-title-help">Upgrade your Website with our High-quality Plugins!</h3>
 						<div class="wooqv-our-plugin-list-wrap">
-							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://wordpresscarousel.com/">
+							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://wpcarousel.io/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
 								<img src="https://ps.w.org/wp-carousel-free/assets/icon-256x256.png" alt="">
 								<h4>WP Carousel</h4>
@@ -702,7 +704,7 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://realtestimonials.io/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="https://ps.w.org/testimonial-free/assets/icon-256x256.png" alt="">
+								<img src="https://ps.w.org/testimonial-free/assets/icon-256x256.gif" alt="">
 								<h4>Real Testimonials</h4>
 								<p>Simply collect, manage, and display Testimonials on your website and boost conversions.</p>
 							</a>
@@ -718,10 +720,10 @@ class Woo_Quick_View_Help {
 								<h4>Product Slider for WooCommerce</h4>
 								<p>Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store.</p>
 							</a>
-							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/plugin/woocommerce-gallery-slider-pro/">
+							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://woogallery.io/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="https://ps.w.org/gallery-slider-for-woocommerce/assets/icon-256x256.png" alt="">
-								<h4>Gallery Slider for WooCommerce</h4>
+								<img src="https://ps.w.org/gallery-slider-for-woocommerce/assets/icon-256x256.gif" alt="">
+								<h4>WooGallery</h4>
 								<p>Product gallery slider and additional variation images gallery for WooCommerce and boost your sales.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://getwpteam.com/">
@@ -742,10 +744,10 @@ class Woo_Quick_View_Help {
 								<h4>Easy Accordion</h4>
 								<p>Minimize customer support by offering comprehensive FAQs and increasing conversions.</p>
 							</a>
-							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/plugin/woocommerce-category-slider-pro/">
+							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/woocategory/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
 								<img src="https://ps.w.org/woo-category-slider-grid/assets/icon-256x256.png" alt="">
-								<h4>Category Slider for WooCommerce</h4>
+								<h4>WooCategory</h4>
 								<p>Display by filtering the list of categories aesthetically and boosting sales.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://wptabs.com/">

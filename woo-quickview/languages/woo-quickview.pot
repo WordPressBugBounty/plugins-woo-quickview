@@ -1,8 +1,7 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Quick View for WooCommerce v2.2.8\n"
-"POT-Creation-Date: 2024-08-13 16:03+0600\n"
+"Project-Id-Version: Quick View for WooCommerce v2.2.10\n"
+"POT-Creation-Date: 2024-11-07 17:24+0600\n"
 "PO-Revision-Date: 2022-05-12 17:36+0600\n"
 "Last-Translator: \n"
 "Language-Team: ShapedPlugin\n"
@@ -11,37 +10,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex;esc_html__;esc_html_e;esc_attr_x;"
 "esc_html_x;esc_attr_e;esc_attr__;date_i18n;number_format_i18n\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/help-page/help.php:200
+#: admin/help-page/help.php:202
 msgid "Activate"
 msgstr ""
 
-#: admin/help-page/help.php:207
+#: admin/help-page/help.php:209
 msgid "Install Now"
 msgstr ""
 
-#: admin/help-page/help.php:213
+#: admin/help-page/help.php:215
 msgid "More Details"
 msgstr ""
 
-#: admin/help-page/help.php:245
+#: admin/help-page/help.php:247
 msgid "Version:"
 msgstr ""
 
-#: admin/help-page/help.php:254
+#: admin/help-page/help.php:256
 msgid "+ Active Installations"
 msgstr ""
 
-#: admin/help-page/help.php:262
+#: admin/help-page/help.php:264
 msgid "Last Updated:"
 msgstr ""
 
-#: admin/help-page/help.php:263
+#: admin/help-page/help.php:265
 msgid "ago"
 msgstr ""
 

@@ -95,6 +95,5 @@ class SP_WQV_Front_Scripts {
 			wp_enqueue_script( 'wqv-facybox' );
 		}
 	}
-
 }
 new SP_WQV_Front_Scripts();

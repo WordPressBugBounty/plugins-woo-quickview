@@ -85,7 +85,6 @@ class SP_WQV_Shortcode {
 		}
 		return $outline;
 	}
-
 }
 
 new SP_WQV_Shortcode();

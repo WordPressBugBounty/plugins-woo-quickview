@@ -78,5 +78,4 @@ class SP_WQV_Router {
 	public function sp_wqv_framework() {
 		include_once SP_WQV_PATH . 'admin/views/sp-framework/classes/setup.class.php';
 	}
-
 }

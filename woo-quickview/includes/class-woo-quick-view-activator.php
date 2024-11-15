@@ -22,5 +22,4 @@ class Woo_Quick_View_Activator {
 
 		deactivate_plugins( 'woo-quick-view-pro/woo-quick-view-pro.php' );
 	}
-
 }

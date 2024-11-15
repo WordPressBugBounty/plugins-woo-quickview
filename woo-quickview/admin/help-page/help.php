@@ -789,5 +789,4 @@ class Woo_Quick_View_Help {
 		</div>
 		<?php
 	}
-
 }

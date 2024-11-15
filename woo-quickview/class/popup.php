@@ -222,7 +222,6 @@ class SP_WQV_Popup {
 		wp_reset_postdata();
 		die();
 	}
-
 }
 
 new SP_WQV_Popup();

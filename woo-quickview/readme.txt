@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 6.7
-WC tested up to: 9.4.1
-Stable tag: 2.2.11
+Tested up to: 6.7.1
+WC tested up to: 9.4.2
+Stable tag: 2.2.12
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,10 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.12 - Nov 22, 2024 =
+* Fix: The plugin style issue for RTL sites.
+* Fix: The translation-related warning found with WP 6.7.1
 
 = 2.2.11 - Nov 15, 2024 =
 * Updated: The language (.pot) file.

@@ -169,6 +169,7 @@ class Woo_Quick_View_Help {
 						break;
 					case 'location-weather':
 					case 'testimonial-free':
+					case 'logo-carousel-free':
 					case 'easy-accordion-free':
 					case 'gallery-slider-for-woocommerce':
 						$image_type = 'gif';
@@ -366,7 +367,7 @@ class Woo_Quick_View_Help {
 							<ul>
 								<li><a class='wooqv-medium-btn' href="<?php echo esc_url( home_url( '/' ) . 'wp-admin/admin.php?page=wqv_settings#tab=general' ); ?>">Configure Settings</a></li>
 								<li><a target="_blank" class='wooqv-medium-btn' href="https://demo.shapedplugin.com/woocommerce-quick-view/">Live Demo</a></li>
-								<li><a target="_blank" class='wooqv-medium-btn arrow-btn' href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1">Explore Woo QuickView <i class="wooqv-icon-button-arrow-icon"></i></a></li>
+								<li><a target="_blank" class='wooqv-medium-btn arrow-btn' href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1">Explore Woo QuickView <i class="wooqv-icon-button-arrow-icon"></i></a></li>
 							</ul>
 						</div>
 						<div class="wooqv-start-page-sidebar">
@@ -401,7 +402,7 @@ class Woo_Quick_View_Help {
 				<div class="wooqv-container">
 					<div class="wooqv-call-to-action-top">
 						<h2 class="wooqv-section-title-help">Lite vs Pro Comparison</h2>
-						<a target="_blank" href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
+						<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
 					</div>
 					<div class="wooqv-lite-to-pro-wrap">
 						<div class="wooqv-features">
@@ -594,10 +595,10 @@ class Woo_Quick_View_Help {
 							<span class='wooqv-section-subtitle'>Already, <b>3000+</b> people are using Woo QuickView on their websites to create beautiful carousels, sliders, and galleries; why won’t you!</span>
 							<div class="wooqv-upgrade-to-pro-btn">
 								<div class="wooqv-action-btn">
-									<a target="_blank" href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
+									<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
 									<span class='wooqv-small-paragraph'>14-Day No-Questions-Asked <a target="_blank" href="https://shapedplugin.com/refund-policy/">Refund Policy</a></span>
 								</div>
-								<a target="_blank" href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1" class='wooqv-big-btn-border'>See All Features</a>
+								<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn-border'>See All Features</a>
 								<a target="_blank" href="https://demo.shapedplugin.com/woocommerce-quick-view-pro/" class="wooqv-big-btn-border wooqv-pro-live-demo-btn">Pro Live Demo</a>
 							</div>
 						</div>
@@ -684,7 +685,7 @@ class Woo_Quick_View_Help {
 							<p>At <strong>ShapedPlugin LLC</strong>, we are committed to helping WooCommerce store owners increase their sales with the help of various easy sales booster plugins. However, we were trying to redefine the shopping experience. Regrettably, we didn't find any suitable plugin. As a result, we developed a powerful Quick View plugin designed for WooCommerce stores.</p>
 							<p>Our goal was clear: to provide a seamless and efficient solution that enables customers to preview products without navigating away from the shop page.</p>
 							<div class="wooqv-about-btn">
-								<a target="_blank" href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1" class='wooqv-medium-btn'>Explore Woo QuickView</a>
+								<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-medium-btn'>Explore Woo QuickView</a>
 								<a target="_blank" href="https://shapedplugin.com/about-us/" class='wooqv-medium-btn wooqv-arrow-btn'>More About Us <i class="wooqv-icon-button-arrow-icon"></i></a>
 							</div>
 						</div>
@@ -734,13 +735,13 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://logocarousel.com/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="https://ps.w.org/logo-carousel-free/assets/icon-256x256.png" alt="">
+								<img src="https://ps.w.org/logo-carousel-free/assets/icon-256x256.gif" alt="">
 								<h4>Logo Carousel</h4>
 								<p>Showcase a group of logo images with Title, Description, Tooltips, Links, and Popup as a grid or in a carousel.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://easyaccordion.io/">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="https://ps.w.org/easy-accordion-free/assets/icon-256x256.png" alt="">
+								<img src="https://ps.w.org/easy-accordion-free/assets/icon-256x256.gif" alt="">
 								<h4>Easy Accordion</h4>
 								<p>Minimize customer support by offering comprehensive FAQs and increasing conversions.</p>
 							</a>
@@ -756,7 +757,7 @@ class Woo_Quick_View_Help {
 								<h4>WP Tabs</h4>
 								<p>Display tabbed content smartly & quickly on your WordPress site without coding skills.</p>
 							</a>
-							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/plugin/woocommerce-quick-view-pro/">
+							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
 								<img src="https://ps.w.org/woo-quickview/assets/icon-256x256.png" alt="">
 								<h4>Quick View for WooCommerce</h4>

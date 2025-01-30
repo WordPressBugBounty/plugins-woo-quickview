@@ -3,8 +3,8 @@ Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
 Tested up to: 6.7.1
-WC tested up to: 9.4.2
-Stable tag: 2.2.12
+WC tested up to: 9.6.0
+Stable tag: 2.2.13
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,7 +12,7 @@ Add a quick view button in the product loop so visitors can quickly view product
 
 == Description ==
 
-[__Live Demo__](https://demo.shapedplugin.com/woocommerce-quick-view/) | [__Video Tutorials__](https://www.youtube.com/watch?v=aVznU7U7Hv4&list=PLoUb-7uG-5jNpcDKwo1WNot5tGlMmzhAH) | [__Documentation__](https://docs.shapedplugin.com/docs/woocommerce-quick-view/overview/) | [__PRO Features »__](https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1)
+[__Live Demo__](https://demo.shapedplugin.com/woocommerce-quick-view/) | [__Video Tutorials__](https://www.youtube.com/watch?v=aVznU7U7Hv4&list=PLoUb-7uG-5jNpcDKwo1WNot5tGlMmzhAH) | [__Documentation__](https://docs.shapedplugin.com/docs/woocommerce-quick-view/overview/) | [__PRO Features »__](https://shapedplugin.com/quick-view-for-woocommerce/?ref=1)
 
 
 [youtube https://www.youtube.com/watch?v=aVznU7U7Hv4]
@@ -73,7 +73,7 @@ Quick View for WooCommerce 2.0.0 has completely been rebuilt and this provides y
 
 = Quick View for WooCommerce - Pro =
 
-[__Quick View for WooCommerce - Pro__](https://shapedplugin.com/plugin/woocommerce-quick-view-pro/?ref=1) is a lightweight and powerful plugin that allows your customers to quickly view product information with smooth animation via AJAX in a nice Modal without opening the product page. Your probable customers can navigate from one product to another using the next and previous product buttons. Products can easily be added to cart from Modal.
+[__Quick View for WooCommerce - Pro__](https://shapedplugin.com/quick-view-for-woocommerce/?ref=1) is a lightweight and powerful plugin that allows your customers to quickly view product information with smooth animation via AJAX in a nice Modal without opening the product page. Your probable customers can navigate from one product to another using the next and previous product buttons. Products can easily be added to cart from Modal.
 
 
 = 3 notable reasons to use this plugin =
@@ -199,6 +199,12 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.13 - Jan 30, 2025 =
+* Fix: The Below Product position issue for the Astra theme,
+* Fix: The Add to Cart loading icon position issue inside the quick view section with the Hello Elementor theme.
+* Fix: The 404 error of the recommended plugin's logo URL.
+* Tested: WooCommerce 9.6.0 compatibility.
 
 = 2.2.12 - Nov 22, 2024 =
 * Fix: The plugin style issue for RTL sites.

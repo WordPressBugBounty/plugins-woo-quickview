@@ -247,6 +247,10 @@
 	color: #fff;
 }
 
+.theme-hello-elementor #wqv-quick-view-content button.single_add_to_cart_button.button.loading:after {
+    line-height: 1.4;
+}
+
 /* ====== Fade effect ====== */
 .mfp-bg.mfp-wqv,
 .mfp-wrap.mfp-wqv {

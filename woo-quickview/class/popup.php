@@ -202,7 +202,7 @@ class SP_WQV_Popup {
 						);
 
 					} else {
-						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', wc_placeholder_img_src(), wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
+						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', wc_placeholder_img_src(), wc_placeholder_img_src(), __( 'Placeholder', 'woo-quickview' ) ), $post->ID );
 					}
 					?>
 				</div> <!-- wqv-product-images-slider -->

@@ -131,7 +131,7 @@ class Woo_Quick_View_Offer_Banner {
 					</div>
 				<?php } ?>
 				<div class="sp_wqv-offer-additional-text">
-					<span class="sp_wqv-clock-icon">⏱</span><p><?php esc_html_e( 'Limited Time Offer, Upgrade Now!', 'wp-carousel-free' ); ?></p>
+					<span class="sp_wqv-clock-icon">⏱</span><p><?php esc_html_e( 'Limited Time Offer, Upgrade Now!', 'woo-quickview' ); ?></p>
 				</div>
 				<?php if ( ! empty( $action_url ) ) { ?>
 					<div class="sp_wqv-banner-action-button">

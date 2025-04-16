@@ -29,6 +29,7 @@ class Woo_Quick_View_Updates {
 		'1.0.11' => 'updates/update-1.0.11.php',
 		'2.0.0'  => 'updates/update-2.0.0.php',
 		'2.1.0'  => 'updates/update-2.1.0.php',
+		'2.2.14' => 'updates/update-2.2.14.php',
 	);
 
 	/**

@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 6.7.1
-WC tested up to: 9.6.0
-Stable tag: 2.2.13
+Tested up to: 6.8
+WC tested up to: 9.8.1
+Stable tag: 2.2.14
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,12 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.14 - Apr 16, 2025 =
+* Fix: The mismatched text domain issue.
+* Fix: The help page recommended plugins logo URL not found issue.
+* Tested: WordPress 6.8 compatibility.
+* Tested: WooCommerce 9.8.1 compatibility.
 
 = 2.2.13 - Jan 30, 2025 =
 * Fix: The Below Product position issue for the Astra theme,

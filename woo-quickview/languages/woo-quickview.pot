@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Quick View for WooCommerce v2.2.10\n"
-"POT-Creation-Date: 2024-11-07 17:24+0600\n"
+"Project-Id-Version: Quick View for WooCommerce v2.2.14\n"
+"POT-Creation-Date: 2025-04-15 11:38+0600\n"
 "PO-Revision-Date: 2022-05-12 17:36+0600\n"
 "Last-Translator: \n"
 "Language-Team: ShapedPlugin\n"
@@ -16,32 +16,36 @@ msgstr ""
 "esc_html_x;esc_attr_e;esc_attr__;date_i18n;number_format_i18n\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/help-page/help.php:202
+#: admin/help-page/help.php:206
 msgid "Activate"
 msgstr ""
 
-#: admin/help-page/help.php:209
+#: admin/help-page/help.php:213
 msgid "Install Now"
 msgstr ""
 
-#: admin/help-page/help.php:215
+#: admin/help-page/help.php:219
 msgid "More Details"
 msgstr ""
 
-#: admin/help-page/help.php:247
+#: admin/help-page/help.php:251
 msgid "Version:"
 msgstr ""
 
-#: admin/help-page/help.php:256
+#: admin/help-page/help.php:260
 msgid "+ Active Installations"
 msgstr ""
 
-#: admin/help-page/help.php:264
+#: admin/help-page/help.php:268
 msgid "Last Updated:"
 msgstr ""
 
-#: admin/help-page/help.php:265
+#: admin/help-page/help.php:269
 msgid "ago"
+msgstr ""
+
+#: admin/views/notices/offer-banner.php:134
+msgid "Limited Time Offer, Upgrade Now!"
 msgstr ""
 
 #: admin/views/sp-framework/classes/admin-options.class.php:339

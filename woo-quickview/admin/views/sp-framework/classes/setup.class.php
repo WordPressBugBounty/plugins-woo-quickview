@@ -267,14 +267,14 @@ if ( ! class_exists( 'SP_WQV_Framework' ) ) {
 		 * @return array.
 		 */
 		public static function is_active_plugin( $file = '' ) {
-			return in_array( $file, (array) get_option( 'active_plugins', array() ) );
+			return in_array( $file, (array) get_option( 'active_plugins', array() ), true );
 		}
 
 		/**
 		 * Sanitize dirname
 		 *
 		 * @param  mixed $dirname dir name.
-		 * @return statement
+		 * @return mixed
 		 */
 		public static function sanitize_dirname( $dirname ) {
 			return preg_replace( '/[^A-Za-z]/', '', $dirname );
@@ -438,7 +438,7 @@ if ( ! class_exists( 'SP_WQV_Framework' ) ) {
 				array(
 					'color_palette' => apply_filters( 'sp_wqv_color_palette', array() ),
 					'i18n'          => array(
-						'confirm'         => esc_html__( 'Are you sure?', 'woo-quickview' ),
+						'confirm'         => esc_html__( 'Are you sure?', 'woo-quickview' ), // translators: %s is the number of characters.
 						'typing_text'     => esc_html__( 'Please enter %s or more characters', 'woo-quickview' ),
 						'searching_text'  => esc_html__( 'Searching...', 'woo-quickview' ),
 						'no_results_text' => esc_html__( 'No results found.', 'woo-quickview' ),
@@ -569,7 +569,6 @@ if ( ! class_exists( 'SP_WQV_Framework' ) ) {
 			echo '<div class="clear"></div>';
 			echo '</div>';
 		}
-
 	}
 
 }

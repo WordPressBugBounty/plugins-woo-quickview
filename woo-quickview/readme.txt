@@ -2,11 +2,11 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 6.8
-WC tested up to: 9.8.1
-Stable tag: 2.2.14
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tested up to: 6.8.1
+WC tested up to: 9.9.5
+Stable tag: 2.2.15
+License: GPL v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
 Add a quick view button in the product loop so visitors can quickly view product information in a nice modal without opening the product page.
 
@@ -199,6 +199,10 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.15 - Jul 15, 2025 =
+* Fix:  Some WPCS-related warnings.
+* Tested: WooCommerce 9.9.5 compatibility.
 
 = 2.2.14 - Apr 16, 2025 =
 * Fix: The mismatched text domain issue.

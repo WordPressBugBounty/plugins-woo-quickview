@@ -83,7 +83,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 					'text_decoration'    => false,
 					'custom_style'       => false,
 					'compact'            => false,
-					'exclude'            => '',
+					'exclude'            => '', // phpcs:ignore
 					'unit'               => 'px',
 					'line_height_unit'   => '',
 					'preview_text'       => 'The quick brown fox jumps over the lazy dog',
@@ -405,7 +405,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 
 			//
 			// Preview.
-			$always_preview = ( $args['preview'] !== 'always' ) ? ' hidden' : '';
+			$always_preview = ( 'always' !== $args['preview'] ) ? ' hidden' : '';
 
 			if ( ! empty( $args['preview'] ) ) {
 				echo '<div class="sp_wqvp--block sp_wqvp--block-preview' . esc_attr( $always_preview ) . '">';
@@ -457,6 +457,5 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 
 			return $output;
 		}
-
 	}
 }

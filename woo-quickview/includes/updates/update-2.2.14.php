@@ -7,6 +7,10 @@
  * @since 2.2.14
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}  // if direct access.
+
 update_option( 'woo_quick_view_version', '2.2.14' );
 update_option( 'woo_quick_view_db_version', '2.2.14' );
 

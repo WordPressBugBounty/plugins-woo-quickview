@@ -37,6 +37,5 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_wqv_help' ) ) {
 			Woo_Quick_View_Help::instance();
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

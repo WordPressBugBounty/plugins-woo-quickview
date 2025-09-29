@@ -132,6 +132,5 @@ if ( ! class_exists( 'SP_WQV_Framework_Abstract' ) ) {
 				}
 			}
 		}
-
 	}
 }

@@ -74,7 +74,7 @@ if ( ! function_exists( 'sp_quick_view_get_icons' ) ) {
 
 				foreach ( $icon_lists as $list ) {
 
-					echo ( count( $icon_lists ) >= 2 ) ? '<div class="sp_wqvp-icon-title">' . $list['title'] . '</div>' : '';
+					echo ( count( $icon_lists ) >= 2 ) ? '<div class="sp_wqvp-icon-title">' . wp_kses_post( $list['title'] ) . '</div>' : '';
 					foreach ( $list['icons'] as $icon ) {
 						echo '<a class="sp_wqvp-icon-tooltip" data-sp_wqvp-icon="' . $icon . '" title="' . $icon . '"><span class="sp_wqvp-icon sp_wqvp-selector"><i class="' . $icon . '"></i></span></a>'; // phpcs:ignore
 					}

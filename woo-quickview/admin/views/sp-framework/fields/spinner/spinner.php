@@ -54,7 +54,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_spinner' ) ) {
 
 			echo wp_kses_post( $this->field_before() );
 
-			echo '<div class="sp_wqv--spin"><input type="number" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes( array( 'class' => 'sp_wqv-input-number' ) ) . ' data-min="' . esc_attr( $args['min'] ) . '" data-max="' . esc_attr( $args['max'] ) . '" data-step="' . esc_attr( $args['step'] ) . '" data-unit="' . esc_attr( $args['unit'] ) . '" step="any" /></div>';
+			echo '<div class="sp_wqv--spin"><input type="number" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes( array( 'class' => 'sp_wqv-input-number' ) ) . ' data-min="' . esc_attr( $args['min'] ) . '" data-max="' . esc_attr( $args['max'] ) . '" data-step="' . esc_attr( $args['step'] ) . '" data-unit="' . esc_attr( $args['unit'] ) . '" step="any" /></div>'; // phpcs:ignore -- values are escaped inside in 'field_attributes()' function.
 
 			echo wp_kses_post( $this->field_after() );
 		}

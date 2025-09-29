@@ -8,6 +8,10 @@
  * @author     ShapedPlugin <support@shapedplugin.com>
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}  // if direct access.
+
 /**
  * The Loader Class
  *
@@ -27,7 +31,6 @@ class SP_WQV_Loader {
 		require_once SP_WQV_PATH . 'public/views/shortcode.php';
 		require_once SP_WQV_PATH . 'includes/class-woo-quick-view-updates.php';
 		require_once SP_WQV_PATH . 'admin/views/notices/review.php';
-		require_once SP_WQV_PATH . 'admin/views/notices/offer-banner.php';
 		require_once SP_WQV_PATH . 'admin/help-page/help.php';
 	}
 }

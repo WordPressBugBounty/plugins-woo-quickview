@@ -36,7 +36,6 @@ if ( ! function_exists( 'sp_wqv_array_search' ) ) {
 		}
 
 		return $results;
-
 	}
 }
 

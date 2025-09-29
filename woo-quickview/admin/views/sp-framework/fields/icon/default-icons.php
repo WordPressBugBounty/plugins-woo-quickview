@@ -9,6 +9,15 @@
  * @subpackage Woo_Quick_View_Pro/sp-framework
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die; // Cannot access directly.
+}
+
+/**
+ * Get Default Icons
+ *
+ * @return array
+ */
 function sp_qvf_get_default_icons() {
 	return array(
 		array(

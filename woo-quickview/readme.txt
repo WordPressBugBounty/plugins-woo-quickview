@@ -2,9 +2,9 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 6.8.2
-WC tested up to: 10.0.2
-Stable tag: 2.2.16
+Tested up to: 6.8
+WC tested up to: 10.2.1
+Stable tag: 2.2.17
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -199,6 +199,11 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.17 - Sep 29, 2025 =
+* Improved: Enhanced plugin security and data validation.
+* Improved: The product image caption will now be displayed in text format only in the lightbox.
+* Improved: The Additional CSS and JS options.
 
 = 2.2.16 - Jul 24, 2025 =
 * Fix: The warning found with WooCommerce v10.0.2

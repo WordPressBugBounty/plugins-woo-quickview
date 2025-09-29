@@ -7,6 +7,10 @@
  * @package Woo_Quick_View.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}  // if direct access.
+
 /**
  * The review admin notice.
  */
@@ -60,11 +64,11 @@ class Woo_Quick_View_Review {
 			</div>
 			<div class="sp-woo-quick-view-notice-text">
 				<h3>Enjoying <strong>Quick View for WooCommerce</strong>?</h3>
-				<p>We hope you had a wonderful experience using <strong>Quick View for WooCommerce</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/?filter=5#new-post" target="_blank"><strong>WordPress.org</strong></a>.
+				<p>We hope you had a wonderful experience using <strong>Quick View for WooCommerce</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank"><strong>WordPress.org</strong></a>.
 					Your positive review will help us improve. Thank you! 😊</p>
 
 				<p class="sp-woo-quick-view-review-actions">
-					<a href="https://wordpress.org/support/plugin/woo-quickview/reviews/?filter=5#new-post" target="_blank" class="button button-primary notice-dismissed rate-woo-quick-view">Ok, you deserve ★★★★★</a>
+					<a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank" class="button button-primary notice-dismissed rate-woo-quick-view">Ok, you deserve ★★★★★</a>
 					<a href="#" class="notice-dismissed remind-me-later"><span class="dashicons dashicons-clock"></span>Nope, maybe later
 					</a>
 					<a href="#" class="notice-dismissed never-show-again"><span class="dashicons dashicons-dismiss"></span>Never show again</a>
@@ -119,7 +123,10 @@ class Woo_Quick_View_Review {
 		if ( ! $review ) {
 			$review = array();
 		}
-		switch ( isset( $post_data['notice_dismissed_data'] ) ? $post_data['notice_dismissed_data'] : '' ) {
+
+		$dismiss_status = isset( $post_data['notice_dismissed_data'] ) ? sanitize_text_field( wp_unslash( $post_data['notice_dismissed_data'] ) ) : '';
+
+		switch ( $dismiss_status ) {
 			case '1':
 				$review['time']      = time();
 				$review['dismissed'] = true;

@@ -73,7 +73,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_button_set' ) ) {
 						$pro_only_class = ( isset( $option['pro_only'] ) && true === $option['pro_only'] ) ? ' only_pro' : '';
 
 						echo '<div class="sp_wqvp--sibling sp_wqvp--button' . esc_attr( $active ) . esc_attr( $pro_only_class ) . '">';
-						echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/>';
+						echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . wp_kses_post( $this->field_attributes() ) . esc_attr( $checked ) . '/>';
 
 						if ( ! empty( $option['option_name'] ) ) {
 							echo esc_attr( $option['option_name'] );
@@ -94,8 +94,6 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_button_set' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

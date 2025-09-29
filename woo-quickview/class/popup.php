@@ -127,13 +127,13 @@ class SP_WQV_Popup {
 		$product_id = 0;
 
 		// Retrieve the product ID from the 'product_id' parameter.
-		if ( ! empty( $_POST['product_id'] ) ) {
-			$product_id = apply_filters( 'ql_woocommerce_add_to_cart_product_id', absint( $_POST['product_id'] ) );
+		if ( ! empty( $_POST['product_id'] ) ) { // phpcs:ignore -- WordPress.Security.NonceVerification.Recommended
+			$product_id = apply_filters( 'ql_woocommerce_add_to_cart_product_id', absint( $_POST['product_id'] ) ); // phpcs:ignore -- WordPress.Security.NonceVerification.Recommended
 		}
 
 		// If product ID is still not set, retrieve it from the 'add-to-cart' parameter.
-		if ( empty( $product_id ) && ! empty( $_POST['add-to-cart'] ) ) {
-			$product_id = apply_filters( 'ql_woocommerce_add_to_cart_product_id', absint( $_POST['add-to-cart'] ) );
+		if ( empty( $product_id ) && ! empty( $_POST['add-to-cart'] ) ) {  // phpcs:ignore
+			$product_id = apply_filters( 'ql_woocommerce_add_to_cart_product_id', absint( $_POST['add-to-cart'] ) ); // phpcs:ignore -- WordPress.Security.NonceVerification.Recommended
 		}
 
 		// Trigger the 'ql_woocommerce_ajax_added_to_cart' action if product ID is set.
@@ -152,10 +152,10 @@ class SP_WQV_Popup {
 	 * @return void
 	 */
 	public function wqv_popup_content() {
-
 		global $post, $product;
-		if ( isset( $_GET['product_id'] ) ) {
-			$post = get_post( sanitize_text_field( wp_unslash( $_GET['product_id'] ) ) ); //phpcs:ignore
+
+		if ( isset( $_GET['product_id'] ) ) { // phpcs:ignore -- WordPress.Security.NonceVerification.Recommended
+			$post = get_post( sanitize_text_field( wp_unslash( $_GET['product_id'] ) ) ); // phpcs:ignore
 		}
 		setup_postdata( $post );
 		$post_id   = $post->ID;
@@ -188,7 +188,7 @@ class SP_WQV_Popup {
 						$image       = get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_single' ), 0, $props );
 						$thumb_image = wp_get_attachment_image_src( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ), 0 );
 						$thumb_image = is_array( $thumb_image ) ? $thumb_image : array( '' );
-						echo apply_filters(
+						echo apply_filters( // phpcs:ignore
 							'woocommerce_single_product_image_html',
 							sprintf(
 								'<span data-thumb="%s" class="selected" itemprop="image" title="%s">%s%s%s</span>',
@@ -202,7 +202,7 @@ class SP_WQV_Popup {
 						);
 
 					} else {
-						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', wc_placeholder_img_src(), wc_placeholder_img_src(), __( 'Placeholder', 'woo-quickview' ) ), $post->ID );
+						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', wc_placeholder_img_src(), wc_placeholder_img_src(), __( 'Placeholder', 'woo-quickview' ) ), $post->ID ); // phpcs:ignore
 					}
 					?>
 				</div> <!-- wqv-product-images-slider -->

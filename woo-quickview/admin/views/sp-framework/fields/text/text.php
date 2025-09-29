@@ -42,15 +42,13 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_text' ) ) {
 		 * @return void
 		 */
 		public function render() {
-
 			$type = ( ! empty( $this->field['attributes']['type'] ) ) ? $this->field['attributes']['type'] : 'text';
 
 			echo wp_kses_post( $this->field_before() );
 
-			echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes() . ' />';
+			echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes() . ' />'; // phpcs:ignore -- values are escaped inside in 'field_attributes()' function.
 
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

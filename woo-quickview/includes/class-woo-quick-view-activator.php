@@ -9,6 +9,10 @@
  * @subpackage Woo_Quick_View/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}  // if direct access.
+
 /**
  * Woo_Quick_View_Activator
  */

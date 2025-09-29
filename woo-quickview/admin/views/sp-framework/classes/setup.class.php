@@ -409,14 +409,8 @@ if ( ! class_exists( 'SP_WQV_Framework' ) ) {
 
 			// Dequeue fontawesome of WP Carousel Free from Quickview plugin page.
 			wp_dequeue_style( 'font-awesome' );
-
-			// Font awesome 4 and 5 loader.
-			if ( apply_filters( 'sp_wqv_fa4', false ) ) {
-				wp_enqueue_style( 'sp_wqv-fa', 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome' . $min . '.css', array(), '4.7.0', 'all' );
-			} else {
-				wp_enqueue_style( 'sp_wqv-fa5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all' . $min . '.css', array(), '5.15.3', 'all' );
-				wp_enqueue_style( 'sp_wqv-fa5-v4-shims', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/v4-shims' . $min . '.css', array(), '5.15.3', 'all' );
-			}
+			// Fontawesome icons.
+			wp_enqueue_style( 'sp_wqv-fontawesome-icons', self::include_plugin_url( 'assets/css/font-awesome' . $min . '.css' ), array(), SP_WQV_VERSION, 'all' );
 
 			// Main style.
 			wp_enqueue_style( 'sp_wqv', self::include_plugin_url( 'assets/css/style' . $min . '.css' ), array(), SP_WQV_VERSION, 'all' );

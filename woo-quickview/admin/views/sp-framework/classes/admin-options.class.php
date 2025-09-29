@@ -367,7 +367,6 @@ if ( ! class_exists( 'SP_WQV_Framework_Options' ) ) {
 		 * @return void
 		 */
 		public function save_defaults() {
-
 			$tmp_options = $this->options;
 
 			foreach ( $this->pre_fields as $field ) {
@@ -382,6 +381,52 @@ if ( ! class_exists( 'SP_WQV_Framework_Options' ) ) {
 		}
 
 		/**
+		 * Recursively sanitize all options.
+		 *
+		 * @param mixed  $data field data.
+		 * @param string $key_context Context of the key, used for special cases.
+		 * @return mixed Sanitized data.
+		 */
+		public function sanitize_recursive( $data, $key_context = '' ) {
+			if ( is_array( $data ) ) {
+				$sanitized = array();
+				foreach ( $data as $key => $value ) {
+					$sanitized_key               = is_string( $key ) ? sanitize_key( $key ) : $key;
+					$sanitized[ $sanitized_key ] = $this->sanitize_recursive( $value, $sanitized_key );
+				}
+
+				return $sanitized;
+			}
+
+			if ( is_object( $data ) ) {
+				return $this->sanitize_recursive( (array) $data, $key_context );
+			}
+
+			if ( is_string( $data ) ) {
+				// Special case: CSS fields.
+				if ( 'wqvpro_custom_css' === $key_context || 'wqvpro_custom_js' === $key_context ) {
+					// Strip tags to avoid <script>, but keep CSS syntax intact.
+					return wp_strip_all_tags( $data );
+				}
+				return sanitize_text_field( $data );
+			}
+
+			if ( is_int( $data ) ) {
+				return intval( $data );
+			}
+
+			if ( is_float( $data ) ) {
+				return floatval( $data );
+			}
+
+			if ( is_bool( $data ) ) {
+				return (bool) $data;
+			}
+
+			return null;
+		}
+
+		/**
 		 * Set options.
 		 *
 		 * @param  bool $ajax is ajax.
@@ -389,130 +434,112 @@ if ( ! class_exists( 'SP_WQV_Framework_Options' ) ) {
 		 */
 		public function set_options( $ajax = false ) {
 
+			// Retrieve nonce.
+			$nonce = '';
+			if ( $ajax && ! empty( $_POST['nonce'] ) ) {
+				// Nonce sent via AJAX request.
+				$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+			} elseif ( ! empty( $_POST[ 'sp_wqv_options_nonce' . $this->unique ] ) ) {
+				// Nonce sent via standard form (with unique field key).
+				$nonce = sanitize_text_field( wp_unslash( $_POST[ 'sp_wqv_options_nonce' . $this->unique ] ) );
+			}
+
+			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'sp_wqv_options_nonce' ) ) {
+				return false;
+			}
+
 			// XSS ok.
-			// No worries, This "POST" requests is sanitizing in the below foreach. see #L337 - #L341.
-			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : $_POST;
+			// No worries, This "POST" requests is sanitizing in the below foreach.
+			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : wp_unslash( $_POST ); // phpcs:ignore
+			$response = $this->sanitize_recursive( $response );
 
 			// Set variables.
-			$data      = array();
-			$noncekey  = 'sp_wqv_options_nonce' . $this->unique;
-			$nonce     = ( ! empty( $response[ $noncekey ] ) ) ? $response[ $noncekey ] : '';
-			$options   = ( ! empty( $response[ $this->unique ] ) ) ? $response[ $this->unique ] : array();
-			$transient = ( ! empty( $response['sp_wqv_transient'] ) ) ? $response['sp_wqv_transient'] : array();
+			$data       = array();
+			$options    = ( ! empty( $response[ $this->unique ] ) ) ? $response[ $this->unique ] : array();
+			$transient  = ( ! empty( $response['sp_wqv_transient'] ) ) ? $response['sp_wqv_transient'] : array();
+			$importing  = false;
+			$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
 
-			if ( wp_verify_nonce( $nonce, 'sp_wqv_options_nonce' ) ) {
+			if ( ! empty( $transient['reset'] ) ) {
 
-				$importing  = false;
-				$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
-
-				if ( ! $ajax && ! empty( $response['sp_wqv_import_data'] ) ) {
-
-					// XSS ok.
-					// No worries, This "POST" requests is sanitizing in the below foreach.
-					$import_data  = json_decode( wp_unslash( trim( $response['sp_wqv_import_data'] ) ), true );
-					$options      = ( is_array( $import_data ) && ! empty( $import_data ) ) ? $import_data : array();
-					$importing    = true;
-					$this->notice = esc_html__( 'Settings successfully imported.', 'woo-quickview' );
-
+				foreach ( $this->pre_fields as $field ) {
+					if ( ! empty( $field['id'] ) ) {
+						$data[ $field['id'] ] = $this->get_default( $field );
+					}
 				}
 
-				if ( ! empty( $transient['reset'] ) ) {
+				$this->notice = esc_html__( 'Default settings restored.', 'woo-quickview' );
 
-					foreach ( $this->pre_fields as $field ) {
+			} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+
+				if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
+
+					foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
 						if ( ! empty( $field['id'] ) ) {
 							$data[ $field['id'] ] = $this->get_default( $field );
 						}
 					}
+				}
 
-					$this->notice = esc_html__( 'Default settings restored.', 'woo-quickview' );
+				$data = wp_parse_args( $data, $this->options );
 
-				} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+				$this->notice = esc_html__( 'Default settings restored.', 'woo-quickview' );
+			} else {
+				// Sanitize and validate.
+				foreach ( $this->pre_fields as $field ) {
 
-					if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
+					if ( ! empty( $field['id'] ) ) {
 
-						foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
-							if ( ! empty( $field['id'] ) ) {
-								$data[ $field['id'] ] = $this->get_default( $field );
-							}
+						$field_id    = $field['id'];
+						$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
+
+						// Ajax and Importing doing wp_unslash already.
+						if ( ! $ajax && ! $importing ) {
+							$field_value = wp_unslash( $field_value );
 						}
-					}
 
-					$data = wp_parse_args( $data, $this->options );
+						// Sanitize "post" request of field.
+						if ( ! isset( $field['sanitize'] ) ) {
+							if ( is_array( $field_value ) ) {
 
-					$this->notice = esc_html__( 'Default settings restored.', 'woo-quickview' );
-
-				} else {
-
-					// Sanitize and validate.
-					foreach ( $this->pre_fields as $field ) {
-
-						if ( ! empty( $field['id'] ) ) {
-
-							$field_id    = $field['id'];
-							$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
-
-							// Ajax and Importing doing wp_unslash already.
-							if ( ! $ajax && ! $importing ) {
-								$field_value = wp_unslash( $field_value );
-							}
-
-							// Sanitize "post" request of field.
-							if ( ! isset( $field['sanitize'] ) ) {
-
-								if ( is_array( $field_value ) ) {
-
-									$data[ $field_id ] = wp_kses_post_deep( $field_value );
-
-								} else {
-
-									$data[ $field_id ] = wp_kses_post( $field_value );
-
-								}
-							} elseif ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
-
-									$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
-
+								$data[ $field_id ] = wp_kses_post_deep( $field_value );
 							} else {
 
-								$data[ $field_id ] = $field_value;
-
+								$data[ $field_id ] = wp_kses_post( $field_value );
 							}
+						} elseif ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
 
-							// Validate "post" request of field.
-							if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
+							$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
+						} else {
 
-								$has_validated = call_user_func( $field['validate'], $field_value );
+							$data[ $field_id ] = $field_value;
+						}
 
-								if ( ! empty( $has_validated ) ) {
+						// Validate "post" request of field.
+						if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
+							$has_validated = call_user_func( $field['validate'], $field_value );
 
-									$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
-									$this->errors[ $field_id ] = $has_validated;
+							if ( ! empty( $has_validated ) ) {
 
-								}
+								$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
+								$this->errors[ $field_id ] = $has_validated;
 							}
 						}
 					}
 				}
-
-				$data = apply_filters( "sp_wqv_{$this->unique}_save", $data, $this );
-
-				do_action( "sp_wqv_{$this->unique}_save_before", $data, $this );
-
-				$this->options = $data;
-
-				$this->save_options( $data );
-
-				do_action( "sp_wqv_{$this->unique}_save_after", $data, $this );
-
-				if ( empty( $this->notice ) ) {
-					$this->notice = esc_html__( 'Settings saved.', 'woo-quickview' );
-				}
-
-				return true;
-
 			}
 
-			return false;
+			$data = apply_filters( "sp_wqv_{$this->unique}_save", $data, $this );
+			do_action( "sp_wqv_{$this->unique}_save_before", $data, $this );
+			$this->options = $data;
+			$this->save_options( $data );
+			do_action( "sp_wqv_{$this->unique}_save_after", $data, $this );
+
+			if ( empty( $this->notice ) ) {
+				$this->notice = esc_html__( 'Settings saved.', 'woo-quickview' );
+			}
+
+			return true;
 		}
 
 		/**

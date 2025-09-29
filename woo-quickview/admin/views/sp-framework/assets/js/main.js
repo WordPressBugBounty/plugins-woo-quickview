@@ -330,54 +330,28 @@
 	//
 	$.fn.sp_wqv_field_code_editor = function () {
 		return this.each(function () {
-
-			if (typeof CodeMirror !== 'function') { return; }
+			if (typeof wp === 'undefined' || typeof wp.codeEditor === 'undefined') {
+				return;
+			}
 
 			var $this = $(this),
 				$textarea = $this.find('textarea'),
-				$inited = $this.find('.CodeMirror'),
-				data_editor = $textarea.data('editor');
+				settings = $textarea.data('editor') || {};
 
-			if ($inited.length) {
-				$inited.remove();
-			}
+			// Merge with WP defaults
+			var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+			editorSettings.codemirror = _.extend(
+				{},
+				editorSettings.codemirror,
+				settings
+			);
 
-			var interval = setInterval(function () {
-				if ($this.is(':visible')) {
-
-					var code_editor = CodeMirror.fromTextArea($textarea[0], data_editor);
-
-					// load code-mirror theme css.
-					if (data_editor.theme !== 'default' && SP_WQV_Framework.vars.code_themes.indexOf(data_editor.theme) === -1) {
-
-						var $cssLink = $('<link>');
-
-						$('#sp_wqv-codemirror-css').after($cssLink);
-
-						$cssLink.attr({
-							rel: 'stylesheet',
-							id: 'sp_wqv-codemirror-' + data_editor.theme + '-css',
-							href: data_editor.cdnURL + '/theme/' + data_editor.theme + '.min.css',
-							type: 'text/css',
-							media: 'all'
-						});
-
-						SP_WQV_Framework.vars.code_themes.push(data_editor.theme);
-
-					}
-
-					CodeMirror.modeURL = data_editor.cdnURL + '/mode/%N/%N.min.js';
-					CodeMirror.autoLoadMode(code_editor, data_editor.mode);
-
-					code_editor.on('change', function (editor, event) {
-						$textarea.val(code_editor.getValue()).trigger('change');
-					});
-
-					clearInterval(interval);
-
-				}
+			// Initialize editor
+			var editor = wp.codeEditor.initialize($textarea[0], editorSettings);
+			// Sync changes back to textarea
+			editor.codemirror.on('change', function () {
+				$textarea.val(editor.codemirror.getValue()).trigger('change');
 			});
-
 		});
 	};
 
@@ -535,14 +509,14 @@
 					$buttons.attr('value', $text);
 
 					if ($this.hasClass('sp_wqv-save-ajax')) {
-
 						e.preventDefault();
 
 						$panel.addClass('sp_wqv-saving');
 						$buttons.prop('disabled', true);
 
 						window.wp.ajax.post('sp_wqv_' + $panel.data('unique') + '_ajax_save', {
-							data: $('#sp_wqv-form').serializeJSONSP_WQV_Framework()
+							data: $('#sp_wqv-form').serializeJSONSP_WQV_Framework(),
+							nonce: $('#sp_wqv_options_nonce' + $panel.data('unique')).val(),
 						})
 							.done(function (response) {
 

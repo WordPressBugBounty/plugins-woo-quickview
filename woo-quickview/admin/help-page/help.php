@@ -693,7 +693,7 @@ class Woo_Quick_View_Help {
 							</div>
 						</div>
 						<div class="wooqv-about-img">
-							<img src="https://shapedplugin.com/wp-content/uploads/2024/01/shapedplugin-team.jpg" alt="">
+							<img src="<?php echo esc_url( SP_WQV_URL . 'admin/help-page/img/shapedplugin-team.jpg' ); ?>" alt="ShapedPlugin Team">
 							<span>Team ShapedPlugin LLC at WordCamp Sylhet</span>
 						</div>
 					</div>
@@ -741,8 +741,8 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://getwpteam.com/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="WP Team">
-								<h4>WP Team</h4>
+								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="Smart Team">
+								<h4>Smart Team</h4>
 								<p>Display your team members smartly who are at the heart of your company or organization!</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://logocarousel.com/?ref=1">
@@ -765,9 +765,9 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://wptabs.com/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['wp-expand-tabs-free'] ); ?>" alt="WP Tabs">
-								<h4>WP Tabs</h4>
-								<p>Display tabbed content smartly & quickly on your WordPress site without coding skills.</p>
+								<img src="<?php echo esc_url( $plugin_icon['wp-expand-tabs-free'] ); ?>" alt="Smart Tabs">
+								<h4>Smart Tabs</h4>
+								<p>Display tabbed content smartly & quickly on your WooCommerce & WordPress site without coding skills.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/smart-swatches-for-woocommerce/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>

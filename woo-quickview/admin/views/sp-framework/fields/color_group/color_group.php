@@ -56,7 +56,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_color_group' ) ) {
 
 					echo '<div class="sp_wqv--left sp_wqv-field-color">';
 					echo '<div class="sp_wqv--title">' . esc_attr( $option ) . '</div>';
-					echo '<input type="text" name="' . esc_attr( $this->field_name( '[' . $key . ']' ) ) . '" value="' . esc_attr( $color_value ) . '" class="sp_wqv-color"' . $default_attr . $this->field_attributes() . '/>';// phpcs:ignore
+					echo '<input type="text" name="' . esc_attr( $this->field_name( '[' . $key . ']' ) ) . '" value="' . esc_attr( $color_value ) . '" class="sp_wqv-color"' . $default_attr . $this->field_attributes() . '/>'; // phpcs:ignore -- values are escaped inside in 'field_attributes()' function.
 					// default_attr already escaping in the above.
 					echo '</div>';
 
@@ -65,6 +65,5 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_color_group' ) ) {
 
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

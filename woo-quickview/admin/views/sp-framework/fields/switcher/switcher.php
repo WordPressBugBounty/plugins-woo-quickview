@@ -54,13 +54,12 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_switcher' ) ) {
 			echo '<span class="sp_wqv--on">' . esc_attr( $text_on ) . '</span>';
 			echo '<span class="sp_wqv--off">' . esc_attr( $text_off ) . '</span>';
 			echo '<span class="sp_wqv--ball"></span>';
-			echo '<input type="text" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes() . ' />';
+			echo '<input type="text" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . $this->field_attributes() . ' />'; // phpcs:ignore -- values are escaped inside in 'field_attributes()' function.
 			echo '</div>';
 
 			echo ( ! empty( $this->field['label'] ) ) ? '<span class="sp_wqv--label">' . esc_attr( $this->field['label'] ) . '</span>' : '';
 
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

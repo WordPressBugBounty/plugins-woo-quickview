@@ -17,10 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 //
 $prefix = '_sp_wqvpro_options';
 
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-} // Cannot access pages directly.
 // ===============================================================================================
 // -----------------------------------------------------------------------------------------------
 // FRAMEWORK SETTINGS
@@ -857,7 +853,7 @@ SP_WQV_Framework::createSection(
 				'type'     => 'code_editor',
 				'title'    => __( 'Custom CSS', 'woo-quickview' ),
 				'settings' => array(
-					'theme' => 'dracula',
+					'theme' => 'default',
 					'mode'  => 'css',
 				),
 			),
@@ -866,7 +862,7 @@ SP_WQV_Framework::createSection(
 				'type'     => 'code_editor',
 				'title'    => __( 'Custom JS', 'woo-quickview' ),
 				'settings' => array(
-					'theme' => 'dracula',
+					'theme' => 'default',
 					'mode'  => 'javascript',
 				),
 			),

@@ -21,7 +21,6 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_image_select' ) ) {
 	 * @version 1.0.0
 	 */
 	class SP_WQV_Framework_Field_image_select extends SP_WQV_Framework_Fields {
-
 		/**
 		 * Field constructor.
 		 *
@@ -34,7 +33,6 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_image_select' ) ) {
 		public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
 			parent::__construct( $field, $value, $unique, $where, $parent );
 		}
-
 
 		/**
 		 * Render
@@ -75,7 +73,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_image_select' ) ) {
 					echo '<div class="sp_wqv--sibling sp_wqv--image' . esc_attr( $active . $pro_only_class ) . '" title="' . ( isset( $option['option_name'] ) ? esc_html( $option['option_name'] ) : '' ) . '">';
 					echo '<figure>';
 					echo '<img src="' . esc_url( $option['image'] ) . '" alt="img-' . esc_attr( $num++ ) . '" />';
-					echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/>';
+					echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name( $extra ) ) . '" value="' . esc_attr( $key ) . '"' . $this->field_attributes() . esc_attr( $checked ) . '/>'; // phpcs:ignore -- values are escaped inside in 'field_attributes()' function.
 					if ( isset( $option['option_name'] ) ) {
 						echo '<p>' . esc_html( $option['option_name'] ) . '</p>';
 					}

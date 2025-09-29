@@ -108,6 +108,5 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_sortable' ) ) {
 				wp_enqueue_script( 'jquery-ui-sortable' );
 			}
 		}
-
 	}
 }

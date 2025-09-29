@@ -140,7 +140,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['font_family'] ) ) {
 				echo '<div class="sp_wqvp--block">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Font Family', 'woo-quickview' ) . '</div>';
-				echo $this->create_select( array( $this->value['font-family'] => $this->value['font-family'] ), 'font-family', esc_html__( 'Select a font', 'woo-quickview' ) );
+				echo $this->create_select( array( $this->value['font-family'] => $this->value['font-family'] ), 'font-family', esc_html__( 'Select a font', 'woo-quickview' ) ); // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 				echo '</div>';
 			}
 
@@ -149,7 +149,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['backup_font_family'] ) ) {
 				echo '<div class="sp_wqvp--block sp_wqvp--block-backup-font-family hidden">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Backup Font Family', 'woo-quickview' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					apply_filters(
 						'sp_wqvp_field_typography_backup_font_family',
 						array(
@@ -196,7 +196,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 					echo '<div class="sp_wqvp--block-extra-styles hidden">';
 					echo ( ! $this->chosen ) ? '<div class="sp_wqvp--title">' . esc_html__( 'Load Extra Styles', 'woo-quickview' ) . '</div>' : '';
 					$placeholder = ( $this->chosen ) ? esc_html__( 'Load Extra Styles', 'woo-quickview' ) : esc_html__( 'Default', 'woo-quickview' );
-					echo $this->create_select( $this->value['extra-styles'], 'extra-styles', $placeholder, true );
+					echo $this->create_select( $this->value['extra-styles'], 'extra-styles', $placeholder, true ); // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					echo '</div>';
 				}
 
@@ -210,7 +210,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 				echo '<div class="sp_wqvp--block sp_wqvp--block-subset hidden">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Subset', 'woo-quickview' ) . '</div>';
 				$subset = ( is_array( $this->value['subset'] ) ) ? $this->value['subset'] : array_filter( (array) $this->value['subset'] );
-				echo $this->create_select( $subset, 'subset', esc_html__( 'Default', 'woo-quickview' ), $args['multi_subset'] );
+				echo $this->create_select( $subset, 'subset', esc_html__( 'Default', 'woo-quickview' ), $args['multi_subset'] ); // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 				echo '</div>';
 			}
 
@@ -219,7 +219,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['text_align'] ) ) {
 				echo '<div class="sp_wqvp--block">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Text Align', 'woo-quickview' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					array(
 						'inherit' => esc_html__( 'Inherit', 'woo-quickview' ),
 						'left'    => esc_html__( 'Left', 'woo-quickview' ),
@@ -239,7 +239,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['font_variant'] ) ) {
 				echo '<div class="sp_wqvp--block">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Font Variant', 'woo-quickview' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					array(
 						'normal'         => esc_html__( 'Normal', 'woo-quickview' ),
 						'small-caps'     => esc_html__( 'Small Caps', 'woo-quickview' ),
@@ -256,7 +256,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['text_transform'] ) ) {
 				echo '<div class="sp_wqvp--block">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Text Transform', 'woo-quickview' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					array(
 						'none'       => esc_html__( 'None', 'woo-quickview' ),
 						'capitalize' => esc_html__( 'Capitalize', 'woo-quickview' ),
@@ -274,7 +274,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 			if ( ! empty( $args['text_decoration'] ) ) {
 				echo '<div class="sp_wqvp--block">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Text Decoration', 'woo-quickview' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- values and attributes are escaped inside in 'create_select()' function.
 					array(
 						'none'               => esc_html__( 'None', 'woo-quickview' ),
 						'underline'          => esc_html__( 'Solid', 'woo-quickview' ),
@@ -355,7 +355,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 					echo '<div class="sp_wqvp--block sp_wqvp--block-font-color">';
 					echo '<div class="sp_wqvp--title">' . esc_html__( 'Font Color', 'woo-quickview' ) . '</div>';
 					echo '<div class="sp_wqvp-field-color">';
-					echo '<input type="text" name="' . esc_attr( $this->field_name( '[color]' ) ) . '" class="sp_wqvp-color sp_wqvp--color" value="' . esc_attr( $this->value['color'] ) . '"' . $default_color_attr . ' />';
+					echo '<input type="text" name="' . esc_attr( $this->field_name( '[color]' ) ) . '" class="sp_wqvp-color sp_wqvp--color" value="' . esc_attr( $this->value['color'] ) . '"' . $default_color_attr . ' />'; // phpcs:ignore -- already escaped above.
 					echo '</div>';
 					echo '</div>';
 				}
@@ -364,7 +364,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 					echo '<div class="sp_wqvp--block sp_wqvp--block-font-color">';
 					echo '<div class="sp_wqvp--title">' . esc_html__( 'Hover Color', 'woo-quickview' ) . '</div>';
 					echo '<div class="sp_wqvp-field-color">';
-					echo '<input type="text" name="' . esc_attr( $this->field_name( '[hover_color]' ) ) . '" class="sp_wqvp-color sp_wqvp--color" value="' . esc_attr( $this->value['hover_color'] ) . '"' . $default_color_attr . ' />';
+					echo '<input type="text" name="' . esc_attr( $this->field_name( '[hover_color]' ) ) . '" class="sp_wqvp-color sp_wqvp--color" value="' . esc_attr( $this->value['hover_color'] ) . '"' . $default_color_attr . ' />'; // phpcs:ignore -- already escaped above.
 					echo '</div>';
 					echo '</div>';
 				}
@@ -376,7 +376,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 				echo '<div class="sp_wqvp--block sp_wqvp--block-margin">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Margin Top', 'woo-quickview' ) . '</div>';
 				echo '<div class="sp_wqvp--blocks">';
-				echo '<div class="sp_wqvp--block sp_wqvp--unit">' . '<i class="fa fa-long-arrow-up"></i>' . '</div>';
+				echo '<div class="sp_wqvp--block sp_wqvp--unit"><i class="fa fa-long-arrow-up"></i></div>';
 				echo '<input type="number" name="' . esc_attr( $this->field_name( '[margin-top]' ) ) . '" class="sp_wqvp--margin-top sp_wqvp--input sp_wqvp-input-number" value="' . esc_attr( $this->value['margin-top'] ) . '" step="any" />';
 				echo '<span class="sp_wqvp--unit">' . esc_attr( $args['unit'] ) . '</span>';
 				echo '</div>';
@@ -388,7 +388,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_typography' ) ) {
 				echo '<div class="sp_wqvp--block sp_wqvp--block-margin">';
 				echo '<div class="sp_wqvp--title">' . esc_html__( 'Margin Bottom', 'woo-quickview' ) . '</div>';
 				echo '<div class="sp_wqvp--blocks">';
-				echo '<div class="sp_wqvp--block sp_wqvp--unit">' . '<i class="fa fa-long-arrow-down"></i>' . '</div>';
+				echo '<div class="sp_wqvp--block sp_wqvp--unit"><i class="fa fa-long-arrow-down"></i></div>';
 				echo '<input type="number" name="' . esc_attr( $this->field_name( '[margin-bottom]' ) ) . '" class="sp_wqvp--margin-bottom sp_wqvp--input sp_wqvp-input-number" value="' . esc_attr( $this->value['margin-bottom'] ) . '" step="any" />';
 				echo '<span class="sp_wqvp--unit">' . esc_attr( $args['unit'] ) . '</span>';
 				echo '</div>';

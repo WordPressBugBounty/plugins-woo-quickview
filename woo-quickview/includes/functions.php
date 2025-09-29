@@ -42,7 +42,7 @@ class SP_WQV_Functions {
 				__( 'Enjoying %1$sQuick View for WooCommerce?%2$s Please rate us %3$sWordPress.org%4$s. Your positive feedback will help us grow more. Thank you! 😊', 'woo-quickview' ),
 				'<strong>',
 				'</strong>',
-				'<span class="spwpcp-footer-text-star">★★★★★</span> <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/?filter=5#new-post" target="_blank">',
+				'<span class="spwpcp-footer-text-star">★★★★★</span> <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank">',
 				'</a>'
 			);
 		}

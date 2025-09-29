@@ -63,8 +63,6 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_icon' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

@@ -3,14 +3,14 @@
  * Plugin Name:   Quick View for WooCommerce
  * Plugin URI:    https://shapedplugin.com/quick-view-for-woocommerce/?ref=1
  * Description:   <strong>Quick View for WooCommerce</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.2.16
+ * Version:       2.2.17
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
  * Domain Path:   /languages
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 10.0.2
+ * WC tested up to: 10.2.1
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -51,7 +51,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.2.16';
+		public $version = '2.2.17';
 
 		/**
 		 * Router
@@ -137,7 +137,6 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 * @return void
 		 */
 		public function init_actions() {
-			add_action( 'init', array( $this, 'load_text_domain' ) );
 			add_action( 'init', array( $this, 'init_button_position' ) );
 			add_action( 'before_woocommerce_init', array( $this, 'declare_compatibility_with_woo_hpos_feature' ) );
 		}
@@ -184,14 +183,6 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 			if ( ( class_exists( 'WEPOF_Extra_Product_Options' ) ) ) {
 				add_filter( 'thwepof_hook_names_before_single_product', array( $this, 'woo_extra_product_addons' ), 80, 2 );
 			}
-		}
-
-		/**
-		 * Load TextDomain for plugin.
-		 */
-		public function load_text_domain() {
-			load_textdomain( 'woo-quickview', WP_LANG_DIR . '/woo-quickview/languages/woo-quick-view-' . apply_filters( 'plugin_locale', get_locale(), 'woo-quickview' ) . '.mo' );
-			load_plugin_textdomain( 'woo-quickview', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
 		/**

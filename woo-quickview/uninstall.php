@@ -40,6 +40,10 @@ function wqv_delete_plugin_data() {
 	$option_name = '_sp_wqvpro_options';
 	delete_option( $option_name );
 	delete_site_option( $option_name ); // For site options in Multisite.
+
+	// Delete offer banner related option keys.
+	delete_option( 'shapedplugin_offer_banner_dismissed_new_year_2026' );
+	delete_option( 'shapedplugin_offer_banner_dismissed_black_friday_2025' );
 }
 
 // Load Woo Quick View plugin main file.

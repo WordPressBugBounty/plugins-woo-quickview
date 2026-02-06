@@ -145,7 +145,6 @@ class SP_WQV_Popup {
 		WC_Ajax::get_refreshed_fragments();
 	}
 
-
 	/**
 	 * Popup Content
 	 *
@@ -154,12 +153,30 @@ class SP_WQV_Popup {
 	public function wqv_popup_content() {
 		global $post, $product;
 
-		if ( isset( $_GET['product_id'] ) ) { // phpcs:ignore -- WordPress.Security.NonceVerification.Recommended
-			$post = get_post( sanitize_text_field( wp_unslash( $_GET['product_id'] ) ) ); // phpcs:ignore
+		// Validate product_id.
+		$product_id = isset( $_GET['product_id'] ) ? absint( $_GET['product_id'] ) : 0; // phpcs:ignore -- Security check: input var ok.
+
+		if ( ! $product_id ) {
+			wp_die( 'Not Found', 'Not Found', array( 'response' => 404 ) );
 		}
+
+		$post = get_post( $product_id );
+
+		// Validate post and post type and password protection.
+		if ( ! $post || 'publish' !== $post->post_status || 'product' !== $post->post_type || post_password_required( $post ) ) {
+			wp_die( 'Not Found', 'Not Found', array( 'response' => 404 ) );
+		}
+
 		setup_postdata( $post );
-		$post_id   = $post->ID;
-		$product   = wc_get_product( $post_id );
+
+		$post_id = $post->ID;
+		$product = wc_get_product( $post_id );
+
+		// Validate product visibility.
+		if ( 'hidden' === $product->get_catalog_visibility() ) {
+			wp_die( 'Not Found', 'Not Found', array( 'response' => 404 ) );
+		}
+
 		$thumb_ids = array();
 		$image_ids = $product->get_gallery_image_ids();
 
@@ -220,7 +237,9 @@ class SP_WQV_Popup {
 		</div>
 		<?php
 		wp_reset_postdata();
-		die();
+
+		// End the request properly.
+		wp_die();
 	}
 }
 

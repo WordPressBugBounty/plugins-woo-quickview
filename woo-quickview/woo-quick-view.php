@@ -3,14 +3,14 @@
  * Plugin Name:   Quick View for WooCommerce
  * Plugin URI:    https://shapedplugin.com/quick-view-for-woocommerce/?ref=1
  * Description:   <strong>Quick View for WooCommerce</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.2.17
+ * Version:       2.2.19
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
  * Domain Path:   /languages
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 10.2.1
+ * WC tested up to: 10.4.3
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -51,7 +51,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.2.17';
+		public $version = '2.2.19';
 
 		/**
 		 * Router
@@ -80,7 +80,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 * @var null
 		 * @since 1.0
 		 */
-		protected static $_instance = null;
+		protected static $instance = null;
 
 		/**
 		 * Instance
@@ -89,11 +89,11 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 * @since 1.0
 		 */
 		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
 
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -404,6 +404,13 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 	 * @return SP_Woo_Quick_View
 	 */
 	function sp_woo_quick_view() {
+		if ( ! defined( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED' ) ) {
+			define( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED', true );
+
+			// Load Plugin Offer Banner.
+			require_once plugin_dir_path( __FILE__ ) . 'admin/views/notices/offer-banner.php';
+		}
+
 		return SP_Woo_Quick_View::instance();
 	}
 

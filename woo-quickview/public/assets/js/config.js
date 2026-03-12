@@ -44,7 +44,7 @@ jQuery(document).ready(function (jQuery) {
                 }
             },
             showCloseBtn: data_wqv.close_button,
-            closeMarkup: '<button title="%title%" type="button" class="mfp-close icon-4"></button>',
+            closeMarkup: '<button title="%title%" type="button" class="mfp-close sp-wqvp-icon-4"></button>',
             removalDelay: 160, //delay removal by X to allow out-animation
             callbacks: {
                 beforeOpen: function () {

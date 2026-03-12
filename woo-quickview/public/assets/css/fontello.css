@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'fontello';
+  font-family: 'sp-wqvp-fontello';
   src: url('../font/fontello.eot?40398021');
   src: url('../font/fontello.eot?40398021#iefix') format('embedded-opentype'),
        url('../font/fontello.woff2?40398021') format('woff2'),
@@ -19,8 +19,8 @@
   }
 }
 */
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "fontello";
+[class^="sp-wqvp-icon-"]:before, [class*=" sp-wqvp-icon-"]:before {
+  font-family: "sp-wqvp-fontello";
   font-style: normal;
   font-weight: normal;
   speak: never;
@@ -55,4 +55,4 @@
 }
 
 
-.icon-4:before { content: '\e803'; } /* '' */
+.sp-wqvp-icon-4:before { content: '\e803'; } /* '' */

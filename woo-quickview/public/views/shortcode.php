@@ -69,7 +69,7 @@ class SP_WQV_Shortcode {
 
 		if ( ! $atts['id'] ) {
 			global $woocommerce, $product;
-			if ( $woocommerce->version >= '3.0' ) {
+			if ( version_compare( $woocommerce->version, '3.0', '>=' ) ) {
 				$atts['id'] = $product->get_id();
 			} else {
 				$atts['id'] = $product->id;

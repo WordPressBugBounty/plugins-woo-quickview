@@ -3,8 +3,8 @@ Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
 Tested up to: 6.9
-WC tested up to: 10.4.3
-Stable tag: 2.2.19
+WC tested up to: 10.6.0
+Stable tag: 2.2.20
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -199,6 +199,11 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.2.20 - Mar 12, 2026 =
+* Fix: The warning found when the quick view button position is bellow add to cart.
+* Fix: The fontello icon conflict issue due to the same prefix.
+* Tested: WordPress 6.9.1 compatibility.
 
 = 2.2.19 - Dec 27, 2025 =
 * Improved: Standardized singleton instance property naming.

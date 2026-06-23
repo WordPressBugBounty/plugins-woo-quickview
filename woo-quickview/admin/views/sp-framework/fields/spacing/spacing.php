@@ -46,10 +46,10 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_spacing' ) ) {
 			$args = wp_parse_args(
 				$this->field,
 				array(
-					'top_icon'           => '<i class="fa fa-arrows-v"></i>',
+					'top_icon'           => '<i class="fa fa-arrows-alt-v"></i>',
 					'right_icon'         => '<i class="fas fa-long-arrow-alt-right"></i>',
 					'bottom_icon'        => '<i class="fas fa-arrows-alt"></i>',
-					'left_icon'          => '<i class="fa fa-arrows-h"></i>',
+					'left_icon'          => '<i class="fa fa-arrows-alt-h"></i>',
 					'all_icon'           => '<i class="fas fa-arrows-alt"></i>',
 					'top_placeholder'    => esc_html__( 'top', 'woo-quickview' ),
 					'right_placeholder'  => esc_html__( 'right', 'woo-quickview' ),

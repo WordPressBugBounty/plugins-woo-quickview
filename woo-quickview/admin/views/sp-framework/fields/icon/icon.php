@@ -58,7 +58,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_icon' ) ) {
 			echo '<div class="sp_wqvp-icon-select">';
 			echo '<span class="sp_wqvp-icon-preview' . esc_attr( $hidden ) . '"><i class="' . esc_attr( $this->value ) . '"></i></span>';
 			echo '<a href="#" class="button button-primary sp_wqvp-icon-add" data-nonce="' . esc_attr( $nonce ) . '">' . esc_attr( $args['button_title'] ) . '</a>';
-			echo '<a href="#" class="button sp_wqvp-warning-primary fa fa-trash' . esc_attr( $hidden ) . '">' . esc_attr( $args['remove_title'] ) . '</a>';
+			echo '<a href="#" class="button sp_wqvp-warning-primary fa fa-trash-alt' . esc_attr( $hidden ) . '">' . esc_attr( $args['remove_title'] ) . '</a>';
 			echo '<input type="hidden" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '" class="sp_wqvp-icon-value"' . $this->field_attributes() . ' />'; // phpcs:ignore
 			echo '</div>';
 

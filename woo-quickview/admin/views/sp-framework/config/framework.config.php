@@ -345,8 +345,8 @@ SP_WQV_Framework::createSection(
 				'left'              => false,
 				'color'             => false,
 				'style'             => false,
-				'top_icon'          => '<i class="fa fa-arrows-h"></i>',
-				'right_icon'        => '<i class="fa fa-arrows-v"></i>',
+				'top_icon'          => '<i class="fa fa-arrows-alt-h"></i>',
+				'right_icon'        => '<i class="fa fa-arrows-alt-v"></i>',
 				'top_placeholder'   => __( 'width', 'woo-quickview' ),
 				'right_placeholder' => __( 'height', 'woo-quickview' ),
 				'default'           => array(
@@ -523,8 +523,8 @@ SP_WQV_Framework::createSection(
 				'left'              => false,
 				'color'             => false,
 				'class'             => 'wqv_product_custom_size only_pro',
-				'top_icon'          => '<i class="fa fa-arrows-h"></i>',
-				'right_icon'        => '<i class="fa fa-arrows-v"></i>',
+				'top_icon'          => '<i class="fa fa-arrows-alt-h"></i>',
+				'right_icon'        => '<i class="fa fa-arrows-alt-v"></i>',
 				'top_placeholder'   => 'width',
 				'right_placeholder' => 'height',
 				'styles'            => array(

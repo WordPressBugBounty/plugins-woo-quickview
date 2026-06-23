@@ -814,7 +814,7 @@
 							SP_WQV_Framework.vars.$icon_target.find('i').removeAttr('class').addClass(icon);
 							SP_WQV_Framework.vars.$icon_target.find('input').val(icon).trigger('change');
 							SP_WQV_Framework.vars.$icon_target.find('.sp_wqvp-icon-preview').removeClass('hidden');
-							SP_WQV_Framework.vars.$icon_target.find('.sp_wqvp-warning-primary.fa.fa-trash').removeClass('hidden');
+							SP_WQV_Framework.vars.$icon_target.find('.sp_wqvp-warning-primary.fa.fa-trash-alt').removeClass('hidden');
 
 							$modal.hide();
 						});
@@ -843,7 +843,7 @@
 				}
 			});
 
-			$this.on('click', '.sp_wqvp-warning-primary.fa.fa-trash', function (e) {
+			$this.on('click', '.sp_wqvp-warning-primary.fa.fa-trash-alt', function (e) {
 				e.preventDefault();
 
 				$this.find('.sp_wqvp-icon-preview').addClass('hidden');

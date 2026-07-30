@@ -237,7 +237,6 @@
   display: none;
 }
 
-.sp-woo-quick-view-help .wooqv-video-area span,
 .sp-woo-quick-view-help .wooqv-video-area h2{
   margin-bottom: 20px;
 }
@@ -247,6 +246,7 @@
 
 .sp-woo-quick-view-help .wooqv-video-area ul {
   margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
 }
 .sp-woo-quick-view-help .wooqv-video-area ul li {

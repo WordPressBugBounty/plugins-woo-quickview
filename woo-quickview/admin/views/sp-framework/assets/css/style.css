@@ -82,10 +82,14 @@
 .sp_wqv-header-inner h1 {
   float: left;
   margin: 0;
-  font-size: 22px;
-  color: #444444;
-  font-weight: 600;
-  line-height: 35px;
+  width: 164px;
+  height: 40px;
+  background-image: url(../img/reno-quickview.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .sp_wqv-header-inner h1 small {
@@ -131,17 +135,8 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-left: 10px;
-  padding-left: 32px;
   width: 50%;
   height: 100%;
-  color: #343434;
-  background-image: url(../img/woo-quickview.svg);
-  background-size: 25px;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .sp_wqv-header-right {

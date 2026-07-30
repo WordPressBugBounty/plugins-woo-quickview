@@ -23,7 +23,7 @@ $prefix = '_sp_wqvpro_options';
 // -----------------------------------------------------------------------------------------------
 // ===============================================================================================
 $settings = array(
-	'menu_title'       => __( 'Woo QuickView', 'woo-quickview' ),
+	'menu_title'       => __( 'Reno QuickView', 'woo-quickview' ),
 	'menu_type'        => 'menu', // menu, submenu, options, theme, etc.
 	'menu_slug'        => 'wqv_settings',
 	'ajax_save'        => true,
@@ -36,7 +36,7 @@ $settings = array(
 	'theme'            => 'light',
 	'menu_position'    => 58,
 	'menu_icon'        => 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NzEuMiA0NzIuNSIgZmlsbD0iI2E3YWFhZCIgeG1sbnM6dj0iaHR0cHM6Ly92ZWN0YS5pby9uYW5vIj48cGF0aCBkPSJNMzIyLjYgMjI2LjZjLTUuNyAwLTExLjUtMy4xLTE0LTkuNS0xNS45LTM3LjUtNTIuMi02MS4xLTkyLjktNjEuMXMtNzcgMjQuMi05Mi45IDYxLjFjLTMuMSA3LjYtMTIgMTEuNS0xOS43IDguMi03LjctMy4yLTExLjUtMTItOC4yLTE5LjcgMjAuNC00OC40IDY4LjEtODAuMSAxMjAuOS04MC4xczk5LjkgMzEuMSAxMjAuOSA4MC4xYzMuMSA3LjYtLjYgMTYuNi04LjIgMTkuNy0yLjEuNy00IDEuMy01LjkgMS4zeiIvPjxwYXRoIGQ9Ik0zMjIuNiAyMzEuM2MtOC4zIDAtMTUuMi00LjgtMTguMy0xMi40LTcuNC0xNy41LTE5LjctMzIuMi0zNS40LTQyLjVzLTM0LjEtMTUuNy01My4yLTE1LjdjLTM4LjYgMC03My40IDIyLjktODguNyA1OC4zLTIgNC44LTUuOSA4LjctMTAuOCAxMC43cy0xMC4yIDItMTUgMGMtNC45LTItOC43LTUuOC0xMC43LTEwLjctMi4xLTQuOS0yLjEtMTAuMyAwLTE1LjEgMTAuNC0yNC42IDI3LjctNDUuNCA1MC02MC4zIDIyLjQtMTQuOSA0OC40LTIyLjcgNzUuMi0yMi43czUyLjcgNy44IDc0LjkgMjIuNSAzOS42IDM1LjYgNTAuMiA2MC41YzIgNC45IDIgMTAuMi0uMSAxNS4yLTIuMSA0LjktNS44IDguNy0xMC43IDEwLjdsLS4zLjFjLTIgLjYtNC41IDEuNC03LjEgMS40em0tMTA2LjktNzkuOWMyMSAwIDQxLjEgNiA1OC4zIDE3LjIgMTcuMyAxMS4zIDMwLjcgMjcuNCAzOC45IDQ2Ljd2LjFjMS42IDQuMSA1LjIgNi42IDkuNyA2LjYgMS4xIDAgMi42LS41IDQuMS0xIDIuNS0xLjEgNC40LTMuMSA1LjUtNS43YTEwLjU2IDEwLjU2IDAgMCAwIC4xLThjLTkuOS0yMy4yLTI2LjEtNDIuNy00Ni44LTU2LjRTMjQwLjcgMTMwIDIxNS43IDEzMHMtNDkuMiA3LjMtNzAgMjEuMmExMjYuMjEgMTI2LjIxIDAgMCAwLTQ2LjYgNTYuMSA5Ljg3IDkuODcgMCAwIDAgMCA3LjljMS4xIDIuNiAzLjEgNC42IDUuOCA1LjcgMi41IDEuMSA1LjMgMSA3LjggMGExMS4xNCAxMS4xNCAwIDAgMCA1LjgtNS43YzE2LjgtMzguNyA1NC45LTYzLjggOTcuMi02My44eiIvPjxwYXRoIGQ9Ik0yMTUuNyAyOTguNWMtNTIuOCAwLTk5LjktMzEuMS0xMjAuOS04MC4xLTMuMS03LjYuNi0xNi42IDguMi0xOS43czE2LjYuNiAxOS43IDguMmMxNS45IDM3LjUgNTIuMiA2MS4xIDkyLjkgNjEuMXM3Ny0yNC4yIDkyLjktNjEuMWMzLjEtNy42IDEyLTExLjUgMTkuNy04LjIgNy43IDMuMiAxMS41IDEyIDguMiAxOS43LTIwLjIgNDguNC02Ny45IDgwLjEtMTIwLjcgODAuMXoiLz48cGF0aCBkPSJNMjE1LjcgMzAzLjJjLTI2LjggMC01Mi43LTcuOC03NC45LTIyLjVzLTM5LjYtMzUuNi01MC4yLTYwLjVjLTQuMS05LjkuOC0yMS43IDEwLjctMjUuOHMyMS43LjggMjUuOCAxMC44YzcuNCAxNy41IDE5LjcgMzIuMiAzNS40IDQyLjVzMzQuMSAxNS43IDUzLjIgMTUuN2MzOC42IDAgNzMuNC0yMi45IDg4LjctNTguMyAyLTQuOCA1LjktOC43IDEwLjgtMTAuN3MxMC4yLTIgMTUgMGM0LjkgMiA4LjcgNS44IDEwLjcgMTAuNyAyLjEgNC45IDIuMSAxMC4zIDAgMTUuMS0xMC40IDI0LjYtMjcuNyA0NS40LTUwIDYwLjMtMjIuNCAxNC44LTQ4LjQgMjIuNy03NS4yIDIyLjd6bS0xMDctMTAxYy0xLjMgMC0yLjYuMi0zLjguOC01LjMgMi4yLTcuOSA4LjUtNS43IDEzLjcgOS45IDIzLjIgMjYuMSA0Mi43IDQ2LjggNTYuNHM0NC44IDIwLjkgNjkuOCAyMC45IDQ5LjItNy4zIDcwLTIxLjJhMTI2LjIxIDEyNi4yMSAwIDAgMCA0Ni42LTU2LjEgOS44NyA5Ljg3IDAgMCAwIDAtNy45Yy0xLjEtMi42LTMuMS00LjYtNS44LTUuNy0yLjUtMS01LjMtMS03LjggMGExMS4xNCAxMS4xNCAwIDAgMC01LjggNS43Yy0xNi44IDM4LjgtNTQuOSA2My45LTk3LjIgNjMuOS0yMSAwLTQxLjEtNi01OC4zLTE3LjItMTcuMy0xMS4zLTMwLjctMjcuNC0zOC45LTQ2LjctMS44LTQuMS01LjgtNi42LTkuOS02LjZ6bTEwNyA1OC4yYy0yNi43IDAtNDguNC0yMS42LTQ4LjQtNDguNHMyMS42LTQ4LjQgNDguNC00OC40IDQ4LjQgMjEuNiA0OC40IDQ4LjQtMjEuNiA0OC40LTQ4LjQgNDguNHptMC02Ni44YTE4LjQgMTguNCAwIDEgMCAwIDM2LjggMTguNCAxOC40IDAgMSAwIDAtMzYuOHptMSAyMzkuOGMtNTcuOSAwLTExMi4zLTIyLjUtMTUzLjItNjMuNUMyMi41IDMyOSAwIDI3NC42IDAgMjE2LjdTMjIuNSAxMDQuNCA2My41IDYzLjVDMTA0LjQgMjIuNSAxNTguOCAwIDIxNi43IDBTMzI5IDIyLjUgMzY5LjkgNjMuNWM0MC45IDQwLjkgNjMuNSA5NS4zIDYzLjUgMTUzLjJTNDEwLjkgMzI5IDM2OS45IDM2OS45cy05NS4zIDYzLjUtMTUzLjIgNjMuNXptMC0zNzMuNEMxMzAuMyA2MCA2MCAxMzAuMyA2MCAyMTYuN3M3MC4zIDE1Ni43IDE1Ni43IDE1Ni43IDE1Ni43LTcwLjMgMTU2LjctMTU2LjdTMzAzLjEgNjAgMjE2LjcgNjB6Ii8+PHBhdGggZD0iTTQ2Mi40IDQ2My43aDBjLTExLjcgMTEuNy0zMC43IDExLjctNDIuNCAwbC02NC4zLTY0LjNjLTExLjctMTEuNy0xMS43LTMwLjcgMC00Mi40aDBjMTEuNy0xMS43IDMwLjctMTEuNyA0Mi40IDBsNjQuMyA2NC4zYzExLjcgMTEuNyAxMS43IDMwLjcgMCA0Mi40eiIvPjwvc3ZnPg==',
-	'framework_title'  => __( 'Woo QuickView Settings', 'woo-quickview' ),
+	'framework_title'  => '',
 );
 SP_WQV_Framework::createOptions( $prefix, $settings );
 // ===============================================================================================
@@ -508,7 +508,7 @@ SP_WQV_Framework::createSection(
 				'desc'     => sprintf(
 					/* translators: 1: start link and strong tag, 2: close tag. */
 					__( 'To unlock the social share and drag & drop sorting ability, %1$sUpgrade To Pro!%2$s', 'woo-quickview' ),
-					'<a href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" target="_blank"><strong>',
+					'<a href="https://shapedplugin.com/reno-quick-view?ref=1" target="_blank"><strong>',
 					'</strong></a>'
 				),
 			),
@@ -826,7 +826,7 @@ SP_WQV_Framework::createSection(
 				'id'         => 'wqvpro_data_remove',
 				'type'       => 'checkbox',
 				'title'      => esc_html__( 'Clean-up Data on Deletion', 'woo-quickview' ),
-				'help_title' => esc_html__( 'Check this box if you would like Quick View for WooCommerce plugin to completely remove all of its data when the plugin is deleted.', 'woo-quickview' ),
+				'help_title' => esc_html__( 'Check this box if you would like Reno Quick View plugin to completely remove all of its data when the plugin is deleted.', 'woo-quickview' ),
 			),
 			array(
 				'id'         => 'wqvpro_add_iphone_android',

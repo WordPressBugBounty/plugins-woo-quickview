@@ -85,7 +85,7 @@ class Woo_Quick_View_Help {
 	public function wooqv_plugins_info_api_help_page() {
 		$plugins_arr = get_transient( 'wooqv_plugins' );
 		if ( false === $plugins_arr ) {
-			$args    = (object) array(
+			$args = array(
 				'author'   => 'shapedplugin',
 				'per_page' => '120',
 				'page'     => '1',
@@ -103,34 +103,30 @@ class Woo_Quick_View_Help {
 					'icons',
 				),
 			);
-			$request = array(
-				'action'  => 'query_plugins',
-				'timeout' => 30,
-				'request' => serialize( $args ),
-			);
-			// https://codex.wordpress.org/WordPress.org_API.
-			$url      = 'http://api.wordpress.org/plugins/info/1.0/';
-			$response = wp_remote_post( $url, array( 'body' => $request ) );
 
-			if ( ! is_wp_error( $response ) ) {
+			if ( ! function_exists( 'plugins_api' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+			}
+
+			$plugin_info = plugins_api( 'query_plugins', $args );
+
+			if ( ! is_wp_error( $plugin_info ) ) {
 
 				$plugins_arr = array();
-				$plugins     = unserialize( $response['body'] );
-
-				if ( isset( $plugins->plugins ) && ( count( $plugins->plugins ) > 0 ) ) {
-					foreach ( $plugins->plugins as $pl ) {
-						if ( ! in_array( $pl->slug, self::$not_show_plugin_list, true ) ) {
+				if ( isset( $plugin_info->plugins ) && ( count( $plugin_info->plugins ) > 0 ) ) {
+					foreach ( $plugin_info->plugins as $pl ) {
+						if ( ! in_array( $pl['slug'], self::$not_show_plugin_list, true ) ) {
 							$plugins_arr[] = array(
-								'slug'              => $pl->slug,
-								'name'              => $pl->name,
-								'version'           => $pl->version,
-								'downloaded'        => $pl->downloaded,
-								'active_installs'   => $pl->active_installs,
-								'last_updated'      => strtotime( $pl->last_updated ),
-								'rating'            => $pl->rating,
-								'num_ratings'       => $pl->num_ratings,
-								'short_description' => $pl->short_description,
-								'icons'             => $pl->icons['2x'],
+								'slug'              => $pl['slug'],
+								'name'              => $pl['name'],
+								'version'           => $pl['version'],
+								'downloaded'        => $pl['downloaded'],
+								'active_installs'   => $pl['active_installs'],
+								'last_updated'      => strtotime( $pl['last_updated'] ),
+								'rating'            => $pl['rating'],
+								'num_ratings'       => $pl['num_ratings'],
+								'short_description' => $pl['short_description'],
+								'icons'             => $pl['icons']['2x'],
 							);
 						}
 					}
@@ -140,44 +136,30 @@ class Woo_Quick_View_Help {
 			}
 		}
 
-		$woocommerce_plugin = array( 'gallery-slider-for-woocommerce', 'woo-category-slider-grid', 'woo-product-slider', 'smart-brands-for-woocommerce' );
-		$woo_plugins        = array();
-		$normal_plugins     = array();
-
-		foreach ( $plugins_arr as $plugin ) {
-			if ( in_array( $plugin['slug'], $woocommerce_plugin, true ) ) {
-				array_push( $woo_plugins, $plugin );
-			} else {
-				array_push( $normal_plugins, $plugin );
-			}
-		}
-
-		$plugins_arr = array_merge( $woo_plugins, $normal_plugins );
-
 		if ( is_array( $plugins_arr ) && ( count( $plugins_arr ) > 0 ) ) {
+			// Show the WooCommerce plugins first, then the rest.
+			$woocommerce_plugin = array( 'gallery-slider-for-woocommerce', 'woo-category-slider-grid', 'woo-product-slider', 'smart-brands-for-woocommerce' );
+			$woo_plugins        = array();
+			$normal_plugins     = array();
+
+			foreach ( $plugins_arr as $plugin ) {
+				if ( in_array( $plugin['slug'], $woocommerce_plugin, true ) ) {
+					$woo_plugins[] = $plugin;
+				} else {
+					$normal_plugins[] = $plugin;
+				}
+			}
+
+			$plugins_arr = array_merge( $woo_plugins, $normal_plugins );
 
 			foreach ( $plugins_arr as $plugin ) {
 				$plugin_slug = $plugin['slug'];
 				$plugin_icon = $plugin['icons'];
-				$image_type  = 'png';
 				if ( isset( self::$plugins[ $plugin_slug ] ) ) {
 					$plugin_file = self::$plugins[ $plugin_slug ];
 				} else {
 					$plugin_file = $plugin_slug . '.php';
 				}
-
-				// switch ( $plugin_slug ) {
-				// case 'styble':
-				// $image_type = 'jpg';
-				// break;
-				// case 'location-weather':
-				// case 'testimonial-free':
-				// case 'logo-carousel-free':
-				// case 'easy-accordion-free':
-				// case 'gallery-slider-for-woocommerce':
-				// $image_type = 'gif';
-				// break;
-				// }
 
 				$details_link = network_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] . '&amp;TB_iframe=true&amp;width=745&amp;height=550' );
 				?>
@@ -334,12 +316,12 @@ class Woo_Quick_View_Help {
 		$plugin   = isset( $_GET['plugin'] ) ? sanitize_text_field( wp_unslash( $_GET['plugin'] ) ) : '';
 		$_wpnonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 
-		if ( isset( $action, $plugin ) && ( 'activate' === $action ) && wp_verify_nonce( $_wpnonce, 'activate-plugin_' . $plugin ) ) {
+		if ( isset( $action, $plugin ) && ( 'activate' === $action ) && wp_verify_nonce( $_wpnonce, 'activate-plugin_' . $plugin ) && current_user_can( 'activate_plugins' ) ) {
 			activate_plugin( $plugin, '', false, true );
 		}
 
-		if ( isset( $action, $plugin ) && ( 'deactivate' === $action ) && wp_verify_nonce( $_wpnonce, 'deactivate-plugin_' . $plugin ) ) {
-			deactivate_plugins( $plugin, '', false, true );
+		if ( isset( $action, $plugin ) && ( 'deactivate' === $action ) && wp_verify_nonce( $_wpnonce, 'deactivate-plugin_' . $plugin ) && current_user_can( 'deactivate_plugins' ) ) {
+			deactivate_plugins( $plugin, '', false );
 		}
 
 		?>
@@ -364,21 +346,21 @@ class Woo_Quick_View_Help {
 				<div class="wooqv-container">
 					<div class="wooqv-start-page-wrap">
 						<div class="wooqv-video-area">
-							<h2 class='wooqv-section-title-help'>Welcome to Woo QuickView!</h2>
-							<span class='wooqv-normal-paragraph'>Thank you for installing Woo QuickView! This video will help you get started with the plugin. Enjoy!</span>
-							<iframe width="724" height="405" src="https://www.youtube.com/embed/aVznU7U7Hv4?si=1b1jkUCN2_K_3_xP" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+							<h2 class='wooqv-section-title-help'>Welcome to Reno Quick View!</h2>
+							<span class='wooqv-normal-paragraph'>Thank you for installing Reno Quick View! This video will help you get started with the plugin. Enjoy!</span>
 							<ul>
 								<li><a class='wooqv-medium-btn' href="<?php echo esc_url( home_url( '/' ) . 'wp-admin/admin.php?page=wqv_settings#tab=general' ); ?>">Configure Settings</a></li>
 								<li><a target="_blank" class='wooqv-medium-btn' href="https://demo.shapedplugin.com/woocommerce-quick-view/">Live Demo</a></li>
-								<li><a target="_blank" class='wooqv-medium-btn arrow-btn' href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1">Explore Woo QuickView <i class="wooqv-icon-button-arrow-icon"></i></a></li>
+								<li><a target="_blank" class='wooqv-medium-btn arrow-btn' href="https://shapedplugin.com/reno-quick-view?ref=1">Explore Reno Quick View <i class="wooqv-icon-button-arrow-icon"></i></a></li>
 							</ul>
+							<iframe width="724" height="405" src="https://www.youtube.com/embed/aVznU7U7Hv4?si=1b1jkUCN2_K_3_xP" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 						</div>
 						<div class="wooqv-start-page-sidebar">
 							<div class="wooqv-start-page-sidebar-info-box">
 								<div class="wooqv-info-box-title">
 									<h4><i class="wooqv-icon-doc-icon"></i> Documentation</h4>
 								</div>
-								<span class='wooqv-normal-paragraph'>Explore Woo QuickView plugin capabilities in our enriched documentation.</span>
+								<span class='wooqv-normal-paragraph'>Explore Reno Quick View plugin capabilities in our enriched documentation.</span>
 								<a target="_blank" class='wooqv-small-btn' href="https://docs.shapedplugin.com/docs/woocommerce-quick-view/overview/">Browse Now</a>
 							</div>
 							<div class="wooqv-start-page-sidebar-info-box">
@@ -405,7 +387,7 @@ class Woo_Quick_View_Help {
 				<div class="wooqv-container">
 					<div class="wooqv-call-to-action-top">
 						<h2 class="wooqv-section-title-help">Lite vs Pro Comparison</h2>
-						<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
+						<a target="_blank" href="https://shapedplugin.com/reno-quick-view?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
 					</div>
 					<div class="wooqv-lite-to-pro-wrap">
 						<div class="wooqv-features">
@@ -595,13 +577,13 @@ class Woo_Quick_View_Help {
 						</div>
 						<div class="wooqv-upgrade-to-pro">
 							<h2 class='wooqv-section-title-help'>Upgrade To PRO & Enjoy Advanced Features!</h2>
-							<span class='wooqv-section-subtitle'>Already, <b>3000+</b> people are using Woo QuickView on their websites to create beautiful carousels, sliders, and galleries; why won’t you!</span>
+							<span class='wooqv-section-subtitle'>Already, <b>3000+</b> people are using Reno Quick View on their websites to create beautiful carousels, sliders, and galleries; why won’t you!</span>
 							<div class="wooqv-upgrade-to-pro-btn">
 								<div class="wooqv-action-btn">
-									<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
+									<a target="_blank" href="https://shapedplugin.com/reno-quick-view?ref=1" class='wooqv-big-btn'>Upgrade to Pro Now!</a>
 									<span class='wooqv-small-paragraph'>14-Day No-Questions-Asked <a target="_blank" href="https://shapedplugin.com/refund-policy/">Refund Policy</a></span>
 								</div>
-								<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-big-btn-border'>See All Features</a>
+								<a target="_blank" href="https://shapedplugin.com/reno-quick-view?ref=1" class='wooqv-big-btn-border'>See All Features</a>
 								<a target="_blank" href="https://demo.shapedplugin.com/woocommerce-quick-view-pro/" class="wooqv-big-btn-border wooqv-pro-live-demo-btn">Pro Live Demo</a>
 							</div>
 						</div>
@@ -609,7 +591,7 @@ class Woo_Quick_View_Help {
 					<div class="wooqv-testimonial">
 						<div class="wooqv-testimonial-title-section">
 							<span class='wooqv-testimonial-subtitle'>NO NEED TO TAKE OUR WORD FOR IT</span>
-							<h2 class="wooqv-section-title-help">Our Users Love Woo QuickView Pro!</h2>
+							<h2 class="wooqv-section-title-help">Our Users Love Reno Quick View Pro!</h2>
 						</div>
 						<div class="wooqv-testimonial-wrap">
 							<div class="wooqv-testimonial-area">
@@ -684,11 +666,11 @@ class Woo_Quick_View_Help {
 				<div class="wooqv-container">
 					<div class="wooqv-about-box">
 						<div class="wooqv-about-info">
-							<h3>The Ultimate WooCommerce Quick View plugin from the Woo Quick View Team, ShapedPlugin, LLC</h3>
+							<h3>The Ultimate Reno Quick View plugin from the Reno Quick View Team, ShapedPlugin, LLC</h3>
 							<p>At <strong>ShapedPlugin LLC</strong>, we are committed to helping WooCommerce store owners increase their sales with the help of various easy sales booster plugins. However, we were trying to redefine the shopping experience. Regrettably, we didn't find any suitable plugin. As a result, we developed a powerful Quick View plugin designed for WooCommerce stores.</p>
 							<p>Our goal was clear: to provide a seamless and efficient solution that enables customers to preview products without navigating away from the shop page.</p>
 							<div class="wooqv-about-btn">
-								<a target="_blank" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1" class='wooqv-medium-btn'>Explore Woo QuickView</a>
+								<a target="_blank" href="https://shapedplugin.com/reno-quick-view?ref=1" class='wooqv-medium-btn'>Explore Reno Quick View</a>
 								<a target="_blank" href="https://shapedplugin.com/about-us/" class='wooqv-medium-btn wooqv-arrow-btn'>More About Us <i class="wooqv-icon-button-arrow-icon"></i></a>
 							</div>
 						</div>
@@ -723,20 +705,20 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://smartpostshow.com/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['post-carousel'] ); ?>" alt="Smart Post Show">
-								<h4>Smart Post Show</h4>
+								<img src="<?php echo esc_url( $plugin_icon['post-carousel'] ); ?>" alt="Smart Post">
+								<h4>Smart Post</h4>
 								<p>Filter and display posts (any post types), pages, taxonomy, custom taxonomy, and custom field, in beautiful layouts.</p>
 							</a>
 							<a target="_blank" href="https://wooproductslider.io/?ref=1" class="wooqv-our-plugin-list-box">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['woo-product-slider'] ); ?>" alt="Product Slider for WooCommerce">
-								<h4>Product Slider for WooCommerce</h4>
+								<img src="<?php echo esc_url( $plugin_icon['woo-product-slider'] ); ?>" alt="Reno Product Slider">
+								<h4>Reno Product Slider</h4>
 								<p>Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store.</p>
 							</a>
-							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://woogallery.io/?ref=1">
+							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://renoproductgallery.com/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['gallery-slider-for-woocommerce'] ); ?>" alt="WooGallery">
-								<h4>WooGallery</h4>
+								<img src="<?php echo esc_url( $plugin_icon['gallery-slider-for-woocommerce'] ); ?>" alt="Reno Product Gallery">
+								<h4>Reno Product Gallery</h4>
 								<p>Product gallery slider and additional variation images gallery for WooCommerce and boost your sales.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://getwpteam.com/?ref=1">
@@ -759,8 +741,8 @@ class Woo_Quick_View_Help {
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://shapedplugin.com/woocategory/?ref=1">
 								<i class="wooqv-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['woo-category-slider-grid'] ); ?>" alt="WooCategory">
-								<h4>WooCategory</h4>
+								<img src="<?php echo esc_url( $plugin_icon['woo-category-slider-grid'] ); ?>" alt="Reno Product Category">
+								<h4>Reno Product Category</h4>
 								<p>Display by filtering the list of categories aesthetically and boosting sales.</p>
 							</a>
 							<a target="_blank" class="wooqv-our-plugin-list-box" href="https://wptabs.com/?ref=1">

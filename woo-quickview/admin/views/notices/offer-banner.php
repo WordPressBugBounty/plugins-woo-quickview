@@ -63,14 +63,14 @@ if ( ! class_exists( 'ShapedPlugin_Offer_Banner' ) ) {
 					'start' => strtotime( '2025-11-18 00:00:00' ),
 					'end'   => strtotime( '2025-12-14 23:59:59' ),
 					'image' => SP_WQV_URL . 'admin/views/img/offer-banner/bfcm-offer-banner.svg',
-					'link'  => 'https://shapedplugin.com/quick-view-for-woocommerce/?campaign=wooq&ref=423#pricing',
+					'link'  => 'https://shapedplugin.com/reno-quick-view?campaign=wooq&ref=423#pricing',
 				),
 				'new_year'     => array(
 					'id'    => 'new_year_2026',
 					'start' => strtotime( '2025-12-26 00:00:00' ),
 					'end'   => strtotime( '2026-01-14 23:59:59' ),
 					'image' => SP_WQV_URL . 'admin/views/img/offer-banner/new-year-offer-banner.svg',
-					'link'  => 'https://shapedplugin.com/quick-view-for-woocommerce/?campaign=wooq&ref=423#pricing',
+					'link'  => 'https://shapedplugin.com/reno-quick-view?campaign=wooq&ref=423#pricing',
 				),
 			);
 

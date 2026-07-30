@@ -39,7 +39,7 @@ class SP_WQV_Functions {
 		if ( 'toplevel_page_wqv_settings' === $screen->id ) {
 			$text = sprintf(
 				/* translators: 1: start strong tag, 2: close strong tag. 3: start link 4: close link */
-				__( 'Enjoying %1$sQuick View for WooCommerce?%2$s Please rate us %3$sWordPress.org%4$s. Your positive feedback will help us grow more. Thank you! 😊', 'woo-quickview' ),
+				__( 'Enjoying %1$sReno Quick View?%2$s Please rate us %3$sWordPress.org%4$s. Your positive feedback will help us grow more. Thank you! 😊', 'woo-quickview' ),
 				'<strong>',
 				'</strong>',
 				'<span class="spwpcp-footer-text-star">★★★★★</span> <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank">',
@@ -60,7 +60,7 @@ class SP_WQV_Functions {
 	public function admin_footer_version( $text ) {
 		$screen = get_current_screen();
 		if ( 'toplevel_page_wqv_settings' === $screen->id ) {
-			$text = 'WooCommerce Quick View ' . SP_WQV_VERSION;
+			$text = 'Reno QuickView ' . SP_WQV_VERSION;
 		}
 
 		return $text;

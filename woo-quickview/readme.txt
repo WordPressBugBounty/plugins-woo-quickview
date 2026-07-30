@@ -1,10 +1,10 @@
-=== Quick View for WooCommerce ===
+=== Reno Quick View ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
 Tested up to: 7.0
-WC tested up to: 10.8.1
-Stable tag: 2.2.21
+WC tested up to: 10.9.4
+Stable tag: 2.3.0
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -12,7 +12,7 @@ Add a quick view button in the product loop so visitors can quickly view product
 
 == Description ==
 
-[__Live Demo__](https://demo.shapedplugin.com/woocommerce-quick-view/) | [__Video Tutorials__](https://www.youtube.com/watch?v=aVznU7U7Hv4&list=PLoUb-7uG-5jNpcDKwo1WNot5tGlMmzhAH) | [__Documentation__](https://docs.shapedplugin.com/docs/woocommerce-quick-view/overview/) | [__PRO Features »__](https://shapedplugin.com/quick-view-for-woocommerce/?ref=1)
+[__Live Demo__](https://demo.shapedplugin.com/woocommerce-quick-view/) | [__Video Tutorials__](https://www.youtube.com/watch?v=aVznU7U7Hv4&list=PLoUb-7uG-5jNpcDKwo1WNot5tGlMmzhAH) | [__Documentation__](https://docs.shapedplugin.com/docs/woocommerce-quick-view/overview/) | [__PRO Features »__](https://shapedplugin.com/reno-quick-view?ref=1)
 
 
 [youtube https://www.youtube.com/watch?v=aVznU7U7Hv4]
@@ -20,18 +20,18 @@ Add a quick view button in the product loop so visitors can quickly view product
 
 = Overview =
 
-**Quick View for WooCommerce** allows you to add a quick view button in the product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page. Products can easily be added to the cart from modal. You can simply customize the style of the quick view button and modal through several settings.
+**Reno Quick View** allows you to add a quick view button in the product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page. Products can easily be added to the cart from modal. You can simply customize the style of the quick view button and modal through several settings.
 
 
-= Why Quick View for WooCommerce? =
+= Why Reno Quick View? =
 
 Imagine you have customers who need to quickly view your products in the online shop. How bad experience would it be if every customer has to open them in a new tab or window? Your customers will be free to look in a better way your products, reading also a small description with all the most important features. With the product quick view button, they will be more focused on what they really want and they will proceed easily to the purchase step.
 
-We believe that you shouldn’t be a programmer or hire a developer to add a quick view button in the product loop for your WooCommerce shop/site. That’s why we built the Quick View for WooCommerce plugin that’s both EASY and POWERFUL.
+We believe that you shouldn’t be a programmer or hire a developer to add a quick view button in the product loop for your WooCommerce shop/site. That’s why we built the Reno Quick View plugin that’s both EASY and POWERFUL.
 
 
-= Quick View for WooCommerce 2.0.0 =
-Quick View for WooCommerce 2.0.0 has completely been rebuilt and this provides you now many improvements and new amazing powerful features.
+= Reno Quick View 2.0.0 =
+Reno Quick View 2.0.0 has completely been rebuilt and this provides you now many improvements and new amazing powerful features.
 
 
 = Key Features =
@@ -71,9 +71,9 @@ Quick View for WooCommerce 2.0.0 has completely been rebuilt and this provides y
 > Ask us at [__Support__](https://shapedplugin.com/support/)
 
 
-= Quick View for WooCommerce - Pro =
+= Reno Quick View - Pro =
 
-[__Quick View for WooCommerce - Pro__](https://shapedplugin.com/quick-view-for-woocommerce/?ref=1) is a lightweight and powerful plugin that allows your customers to quickly view product information with smooth animation via AJAX in a nice Modal without opening the product page. Your probable customers can navigate from one product to another using the next and previous product buttons. Products can easily be added to cart from Modal.
+[__Reno Quick View - Pro__](https://shapedplugin.com/reno-quick-view?ref=1) is a lightweight and powerful plugin that allows your customers to quickly view product information with smooth animation via AJAX in a nice Modal without opening the product page. Your probable customers can navigate from one product to another using the next and previous product buttons. Products can easily be added to cart from Modal.
 
 
 = 3 notable reasons to use this plugin =
@@ -141,7 +141,7 @@ Quick View for WooCommerce 2.0.0 has completely been rebuilt and this provides y
 * Full list of PRO features.
 
 
-**Quick View for WooCommerce Pro - Getting started**
+**Reno Quick View Pro - Getting started**
 [youtube https://www.youtube.com/watch?v=fXW5nzxBP6k]
 
 
@@ -162,9 +162,9 @@ Designed and Developed by [__ShapedPlugin__](https://shapedplugin.com/)
 
 = AUTOMATIC INSTALLATION (EASIEST WAY) =
 
-To do an automatic install of Quick View for WooCommerce
+To do an automatic install of Reno Quick View
 , log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
-In the search field type "Quick View for WooCommerce
+In the search field type "Reno Quick View
 " by ShapedPlugin. Once you have found it you can install it by simply clicking "Install Now" and then "Activate".
 
 = MANUAL INSTALLATION =
@@ -199,6 +199,15 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.3.0 - Jul 30, 2026 =
+* New: The plugin has been rebranded from "Quick View for WooCommerce" to "Reno Quick View".
+* New: A dismissible notice on the plugin settings page announcing the rebranding.
+* Improved: The plugin name on the settings, and help pages updated to Reno Quick View.
+* Improved: The admin menu label updated from "Woo QuickView" to "Reno QuickView".
+* Improved: Replaced unserialize() with WordPress plugins_api() for the recommended plugin section.
+* Updated: The translation (POT) file with the rebranded strings.
+* Tested: WooCommerce 10.9.4 compatibility.
 
 = 2.2.21 - Jun 23, 2026 =
 * Fix: Resolved plugin options page styling inconsistency introduced in WordPress 7.0.

@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:   Quick View for WooCommerce
- * Plugin URI:    https://shapedplugin.com/quick-view-for-woocommerce/?ref=1
- * Description:   <strong>Quick View for WooCommerce</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.2.21
+ * Plugin Name:   Reno Quick View (formerly Quick View for WooCommerce)
+ * Plugin URI:    https://shapedplugin.com/reno-quick-view?ref=1
+ * Description:   <strong>Reno Quick View</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
+ * Version:       2.3.0
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
  * Domain Path:   /languages
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 10.8.1
+ * WC tested up to: 10.9.4
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -51,7 +51,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.2.21';
+		public $version = '2.3.0';
 
 		/**
 		 * Router
@@ -210,7 +210,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 				$links     = is_array( $links ) ? $links : array();
 				array_unshift( $links, $new_links );
 
-				$links['go_pro'] = sprintf( '<a target="_blank" href="%1$s" style="color: #35b747; font-weight: 700;">Go Pro!</a>', 'https://shapedplugin.com/quick-view-for-woocommerce/?ref=1' );
+				$links['go_pro'] = sprintf( '<a target="_blank" href="%1$s" style="color: #35b747; font-weight: 700;">Go Pro!</a>', 'https://shapedplugin.com/reno-quick-view?ref=1' );
 			}
 
 			return $links;

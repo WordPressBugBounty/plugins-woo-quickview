@@ -60,11 +60,11 @@ class Woo_Quick_View_Review {
 		?>
 		<div id="sp-woo-quick-view-review-notice" class="sp-woo-quick-view-review-notice">
 			<div class="sp-woo-quick-view-plugin-icon">
-				<img src="<?php echo esc_url( SP_WQV_URL . 'admin/views/img/woo-quick-view-notice.svg' ); ?>" alt="Quick View for WooCommerce">
+				<img src="<?php echo esc_url( SP_WQV_URL . 'admin/views/img/woo-quick-view-notice.svg' ); ?>" alt="Reno Quick View">
 			</div>
 			<div class="sp-woo-quick-view-notice-text">
-				<h3>Enjoying <strong>Quick View for WooCommerce</strong>?</h3>
-				<p>We hope you had a wonderful experience using <strong>Quick View for WooCommerce</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank"><strong>WordPress.org</strong></a>.
+				<h3>Enjoying <strong>Reno Quick View</strong>?</h3>
+				<p>We hope you had a wonderful experience using <strong>Reno Quick View</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/woo-quickview/reviews/" target="_blank"><strong>WordPress.org</strong></a>.
 					Your positive review will help us improve. Thank you! 😊</p>
 
 				<p class="sp-woo-quick-view-review-actions">

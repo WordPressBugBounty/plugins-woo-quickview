@@ -1,8 +1,8 @@
-=== Reno Quick View ===
+=== Quick View for WooCommerce – Reno QuickView ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 7.0
+Tested up to: 7.1
 WC tested up to: 10.9.4
 Stable tag: 2.3.0
 License: GPL v2 or later
@@ -20,7 +20,7 @@ Add a quick view button in the product loop so visitors can quickly view product
 
 = Overview =
 
-**Reno Quick View** allows you to add a quick view button in the product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page. Products can easily be added to the cart from modal. You can simply customize the style of the quick view button and modal through several settings.
+**Reno Quick View** allows you to add a quick view button in the product loop so that visitors can quickly view product information (using AJAX) in a nice modal without opening the product page. Products can easily be added to the cart from modal. You can simply customize the style of the quick view button and modal through several settings.
 
 
 = Why Reno Quick View? =

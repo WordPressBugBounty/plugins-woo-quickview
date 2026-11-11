@@ -48,7 +48,7 @@ if ( ! class_exists( 'Woo_Quick_View_Rebrand_Notice' ) ) {
 		 * Class constructor.
 		 */
 		private function __construct() {
-			add_action( 'admin_notices', array( $this, 'render_rebrand_notice' ) );
+			// add_action( 'admin_notices', array( $this, 'render_rebrand_notice' ) );
 			add_action( 'wp_ajax_sp_wqv_dismiss_rebrand_notice', array( $this, 'dismiss_rebrand_notice' ) );
 		}
 

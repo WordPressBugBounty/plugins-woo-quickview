@@ -3,14 +3,15 @@
  * Plugin Name:   Reno Quick View (formerly Quick View for WooCommerce)
  * Plugin URI:    https://shapedplugin.com/reno-quick-view?ref=1
  * Description:   <strong>Reno Quick View</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.3.0
+ * Version:       2.3.1
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
  * Domain Path:   /languages
+ * Requires PHP:  7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 10.9.4
+ * WC tested up to: 11.2.2
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -51,7 +52,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.3.0';
+		public $version = '2.3.1';
 
 		/**
 		 * Router
@@ -406,11 +407,22 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 	 * @return SP_Woo_Quick_View
 	 */
 	function sp_woo_quick_view() {
-		if ( ! defined( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED' ) ) {
-			define( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED', true );
+		if ( is_admin() ) {
+			/**
+			 * Shared ShapedPlugin BFCM notice. Only one notice renders even when
+			 * several ShapedPlugin free plugins are active.
+			 */
+			require_once plugin_dir_path( __FILE__ ) . 'admin/views/notices/shapedplugin-bfcm-notice.php';
 
-			// Load Plugin Offer Banner.
-			require_once plugin_dir_path( __FILE__ ) . 'admin/views/notices/offer-banner.php';
+			ShapedPlugin_BFCM_Notice_2026::register(
+				array(
+					'slug'       => 'woo-quickview',
+					'name'       => 'Reno Quick View Pro',
+					'image'      => plugin_dir_url( __FILE__ ) . 'admin/views/img/offer-banner/bfcm-notice-2026.webp',
+					'link'       => 'https://shapedplugin.com/reno-quick-view/?utm_source=dashboard&utm_medium=rqv_dealbutton&utm_campaign=bfcm26#pricing',
+					'screen_ids' => array( 'toplevel_page_wqv_settings' ),
+				)
+			);
 		}
 
 		return SP_Woo_Quick_View::instance();

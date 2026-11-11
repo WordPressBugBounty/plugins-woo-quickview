@@ -3,8 +3,9 @@ Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
 Tested up to: 7.1
-WC tested up to: 10.9.4
-Stable tag: 2.3.0
+Requires PHP: 7.4
+WC tested up to: 11.2.2
+Stable tag: 2.3.1
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -199,6 +200,11 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.3.1 - Nov 11, 2026 =
+* Improved: The minimum required PHP version is now 7.4.
+* Fixed: A PHP warning and a missing icon in the recommended plugins list on the Help page for plugins without a high-resolution icon.
+* Tested: WooCommerce 11.2.2 compatibility.
 
 = 2.3.0 - Jul 30, 2026 =
 * New: The plugin has been rebranded from "Quick View for WooCommerce" to "Reno Quick View".

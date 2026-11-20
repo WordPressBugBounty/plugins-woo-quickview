@@ -114,6 +114,11 @@ class Woo_Quick_View_Review {
 	 * @return void
 	 **/
 	public function dismiss_review_notice() {
+		// Capability check before nonce verification.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return; // Keep existing early-return contract (method ends with die;).
+		}
+
 		$post_data = wp_unslash( $_POST );
 
 		if ( ! isset( $post_data['nonce'] ) || ! wp_verify_nonce( sanitize_key( $post_data['nonce'] ), 'sp_woo_quick_view_review_notice' ) ) {

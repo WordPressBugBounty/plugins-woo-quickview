@@ -82,9 +82,10 @@ class SP_WQV_Front_Scripts {
 				array(
 					'ajax_url' => admin_url( 'admin-ajax.php' ),
 					'wc_ajax'  => urldecode( add_query_arg( 'wc-ajax', '%%endpoint%%', home_url( '/' ) ) ),
-					'nonce'    => wp_create_nonce( 'nonce_name' ),
+					// No nonce localized: wqv_popup_content is a read-only nopriv endpoint that never verifies one (audit #10).
 				)
 			);
+			// Note: Custom JS is admin-trusted input (manage_options) and is intentionally emitted on the frontend by design (audit #4); do not widen the capability.
 			$wqv_custom_js = sp_wqv_get_option( 'wqvpro_custom_js' );
 
 		if ( ! empty( $wqv_custom_js ) ) {

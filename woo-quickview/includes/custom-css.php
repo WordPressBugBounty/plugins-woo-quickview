@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }  // if direct access.
 
 $settings                      = get_option( '_sp_wqvpro_options' );
-$wqvpro_custom_css             = isset( $settings['wqvpro_custom_css'] ) ? trim( html_entity_decode( $settings['wqvpro_custom_css'] ) ) : '';
+$wqvpro_custom_css             = isset( $settings['wqvpro_custom_css'] ) ? trim( $settings['wqvpro_custom_css'] ) : '';
 $wqv_font_icon_size            = sp_wqv_get_option( 'wqvpro_font_icon_size' );
 $modal_z_index                 = sp_wqv_get_option( 'wqvpro_modal_z_index' );
 $popup_size                    = sp_wqv_get_option( 'wqvpro_modal_size' );

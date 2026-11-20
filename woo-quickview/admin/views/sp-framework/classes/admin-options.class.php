@@ -333,6 +333,11 @@ if ( ! class_exists( 'SP_WQV_Framework_Options' ) ) {
 		 */
 		public function ajax_save() {
 
+			// Capability check first; the nonce is verified inside set_options().
+			if ( ! current_user_can( $this->args['menu_capability'] ) ) {
+				wp_send_json_error( array( 'error' => esc_html__( 'Unauthorized.', 'woo-quickview' ) ) );
+			}
+
 			$result = $this->set_options( true );
 
 			if ( ! $result ) {

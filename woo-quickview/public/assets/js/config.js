@@ -20,8 +20,10 @@ jQuery(document).ready(function (jQuery) {
             wqv_products.push({ src: wqv_vars.ajax_url + '?product_id=' + product_id });
         }
         var effect = jQuery(this).attr('data-effect');
-        var data_wqv_json = jQuery(this).data('wqv');
-        data_wqv = JSON.parse(data_wqv_json);
+        var data_wqv_raw = jQuery(this).attr('data-wqv');
+        var data_wqv = ( 'string' === typeof data_wqv_raw && data_wqv_raw.length )
+            ? JSON.parse( data_wqv_raw )
+            : {};
 
         var index = wqv_get_key(wqv_products, 'src', wqv_vars.ajax_url + '?product_id=' + product_id);
 
@@ -38,8 +40,7 @@ jQuery(document).ready(function (jQuery) {
                 settings: {
                     type: 'GET',
                     data: {
-                        action: 'wqv_popup_content',
-                        _ajax_nonce: wqv_vars.nonce,
+                        action: 'wqv_popup_content'
                     }
                 }
             },
@@ -114,16 +115,22 @@ jQuery(document).ready(function (jQuery) {
                     var image_url = variation_images[variation_id][0];
                     var image_title = variation_images[variation_id][1];
 
-                    if (data_wqv.lightbox) {
-                        var lightbox_start = '<a data-fancybox="wqvpro-gallery" title="' + image_title + '" href="' + image_url + '">';
-                        var lightbox_end = '</a>';
+                    var $span = jQuery('<span class="selected" itemprop="image"></span>')
+                        .attr('data-thumb', image_url)
+                        .attr('title', image_title);
+
+                    if ( data_wqv.lightbox ) {
+                        var $anchor = jQuery('<a></a>')
+                            .attr('data-fancybox', 'wqvpro-gallery')
+                            .attr('title', image_title)
+                            .attr('href', image_url);
+                        $anchor.append( jQuery('<img>').attr('src', image_url) );
+                        $span.append( $anchor );
                     } else {
-                        lightbox_start = '',
-                            lightbox_end = '';
+                        $span.append( jQuery('<img>').attr('src', image_url) );
                     }
-                    var image_html =
-                        '<span data-thumb="' + image_url + '" class="selected" itemprop="image" title="' + image_title + '">' + lightbox_start + '<img src="' + image_url + '" />' + lightbox_end + '</span>';
-                    jQuery('.wqv-product-images').html(image_html);
+
+                    jQuery('.wqv-product-images').html( $span );
                 }
             });
         }

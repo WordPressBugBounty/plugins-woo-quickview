@@ -84,51 +84,54 @@ class Woo_Quick_View_Help {
 	 */
 	public function wooqv_plugins_info_api_help_page() {
 		$plugins_arr = get_transient( 'wooqv_plugins' );
+
 		if ( false === $plugins_arr ) {
-			$args = array(
-				'author'   => 'shapedplugin',
-				'per_page' => '120',
-				'page'     => '1',
-				'fields'   => array(
-					'slug',
-					'name',
-					'version',
-					'downloaded',
-					'active_installs',
-					'last_updated',
-					'rating',
-					'num_ratings',
-					'short_description',
-					'author',
-					'icons',
-				),
-			);
+			// Default to an empty array so the downstream foreach() is always
+			// safe, even if the API call fails (the list is only cached on success).
+			$plugins_arr = array();
 
 			if ( ! function_exists( 'plugins_api' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 			}
 
-			$plugin_info = plugins_api( 'query_plugins', $args );
+			$args = array(
+				'author'   => 'shapedplugin',
+				'per_page' => 120,
+				'page'     => 1,
+				'fields'   => array(
+					'slug'              => true,
+					'name'              => true,
+					'version'           => true,
+					'downloaded'        => true,
+					'active_installs'   => true,
+					'last_updated'      => true,
+					'rating'            => true,
+					'num_ratings'       => true,
+					'short_description' => true,
+					'author'            => true,
+					'icons'             => true,
+				),
+			);
 
-			if ( ! is_wp_error( $plugin_info ) ) {
+			$plugins = plugins_api( 'query_plugins', $args );
 
-				$plugins_arr = array();
-				if ( isset( $plugin_info->plugins ) && ( count( $plugin_info->plugins ) > 0 ) ) {
-					foreach ( $plugin_info->plugins as $pl ) {
-						if ( ! in_array( $pl['slug'], self::$not_show_plugin_list, true ) ) {
-							$plugins_arr[] = array(
-								'slug'              => $pl['slug'],
-								'name'              => $pl['name'],
-								'version'           => $pl['version'],
-								'downloaded'        => $pl['downloaded'],
-								'active_installs'   => $pl['active_installs'],
-								'last_updated'      => strtotime( $pl['last_updated'] ),
-								'rating'            => $pl['rating'],
-								'num_ratings'       => $pl['num_ratings'],
-								'short_description' => $pl['short_description'],
-								'icons'             => $pl['icons']['2x'] ?? $pl['icons']['1x'] ?? '',
-							);
-						}
+			if ( ! is_wp_error( $plugins ) && isset( $plugins->plugins ) ) {
+				foreach ( $plugins->plugins as $pl ) {
+					if ( ! in_array( $pl['slug'], self::$not_show_plugin_list, true ) ) {
+						$icons = isset( $pl['icons'] ) ? (array) $pl['icons'] : array();
+
+						$plugins_arr[] = array(
+							'slug'              => isset( $pl['slug'] ) ? $pl['slug'] : '',
+							'name'              => isset( $pl['name'] ) ? $pl['name'] : '',
+							'version'           => isset( $pl['version'] ) ? $pl['version'] : '',
+							'downloaded'        => isset( $pl['downloaded'] ) ? $pl['downloaded'] : 0,
+							'active_installs'   => isset( $pl['active_installs'] ) ? $pl['active_installs'] : 0,
+							'last_updated'      => isset( $pl['last_updated'] ) ? strtotime( $pl['last_updated'] ) : 0,
+							'rating'            => isset( $pl['rating'] ) ? $pl['rating'] : 0,
+							'num_ratings'       => isset( $pl['num_ratings'] ) ? $pl['num_ratings'] : 0,
+							'short_description' => isset( $pl['short_description'] ) ? $pl['short_description'] : '',
+							'icons'             => isset( $icons['2x'] ) ? $icons['2x'] : ( isset( $icons['1x'] ) ? $icons['1x'] : '' ),
+						);
 					}
 				}
 
@@ -269,6 +272,13 @@ class Woo_Quick_View_Help {
 	 * @return boolean
 	 */
 	public function is_plugin_installed( $plugin_slug, $plugin_file ) {
+		$plugin_slug = sanitize_key( $plugin_slug );
+
+		// Plugin main files are single filenames — reject any path segment or traversal.
+		if ( false !== strpos( $plugin_file, '..' ) || false !== strpos( $plugin_file, '/' ) ) {
+			return false;
+		}
+
 		return file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug . '/' . $plugin_file );
 	}
 

@@ -120,8 +120,9 @@ class SP_WQV_Popup {
 	 * added product. It also refreshes the cart fragments to update the cart display.
 	 */
 	public function ql_woocommerce_ajax_add_to_cart() {
-		// Disable nonce check for read-only data.
-		// No need to use nonce for read-only data.
+		// No nonce check: this follows WooCommerce's own `wc-ajax` convention, where
+		// cart mutation is governed by WooCommerce's nonced add-to-cart flow. This
+		// handler only fires an action and returns refreshed fragments (audit #11).
 
 		// Initialize the product ID variable.
 		$product_id = 0;
@@ -196,7 +197,7 @@ class SP_WQV_Popup {
 						$image_title   = get_the_title( $attachment_id );
 						$props         = wc_get_product_attachment_props( $attachment_id, $post );
 						if ( $image_lightbox ) {
-							$lightbox_start = '<a data-fancybox="wqvpro-gallery" title="' . esc_attr( $image_title ) . '" " href="' . esc_url( $props['url'] ) . '">';
+							$lightbox_start = '<a data-fancybox="wqvpro-gallery" title="' . esc_attr( $image_title ) . '" href="' . esc_url( $props['url'] ) . '">';
 							$lightbox_end   = '</a>';
 						} else {
 							$lightbox_start = '';
@@ -209,7 +210,7 @@ class SP_WQV_Popup {
 							'woocommerce_single_product_image_html',
 							sprintf(
 								'<span data-thumb="%s" class="selected" itemprop="image" title="%s">%s%s%s</span>',
-								$thumb_image[0],
+								esc_url( $thumb_image[0] ),
 								esc_attr( $props['caption'] ),
 								$lightbox_start,
 								$image,
@@ -219,7 +220,7 @@ class SP_WQV_Popup {
 						);
 
 					} else {
-						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', wc_placeholder_img_src(), wc_placeholder_img_src(), __( 'Placeholder', 'woo-quickview' ) ), $post->ID ); // phpcs:ignore
+						echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<span data-thumb="%s" class="selected" itemprop="image"><img src="%s" alt="%s" /></span>', esc_url( wc_placeholder_img_src() ), esc_url( wc_placeholder_img_src() ), esc_attr__( 'Placeholder', 'woo-quickview' ) ), $post->ID ); // phpcs:ignore
 					}
 					?>
 				</div> <!-- wqv-product-images-slider -->

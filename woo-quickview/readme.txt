@@ -2,10 +2,10 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
 Requires at least: 4.8
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-WC tested up to: 11.2.2
-Stable tag: 2.3.1
+WC tested up to: 11.3
+Stable tag: 2.3.2
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -200,6 +200,11 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.3.2 - Nov 20, 2026 =
+* Fixed: Security hardening for the quick view button, popup images, and admin settings actions.
+* Tested: WordPress 7.2 compatibility.
+* Tested: WooCommerce 11.3 compatibility.
 
 = 2.3.1 - Nov 11, 2026 =
 * Improved: The minimum required PHP version is now 7.4.

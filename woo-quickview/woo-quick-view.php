@@ -3,7 +3,7 @@
  * Plugin Name:   Reno Quick View (formerly Quick View for WooCommerce)
  * Plugin URI:    https://shapedplugin.com/reno-quick-view?ref=1
  * Description:   <strong>Reno Quick View</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.3.1
+ * Version:       2.3.2
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
@@ -11,7 +11,7 @@
  * Requires PHP:  7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
- * WC tested up to: 11.2.2
+ * WC tested up to: 11.3
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -52,7 +52,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.3.1';
+		public $version = '2.3.2';
 
 		/**
 		 * Router
@@ -363,17 +363,17 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 			$quick_view_button_text          = isset( $settings['wqvpro_quick_view_button_text'] ) ? $settings['wqvpro_quick_view_button_text'] : 'Quick View';
 			$wqv_button_position             = isset( $settings['wqvpro_quick_view_button_position'] ) ? $settings['wqvpro_quick_view_button_position'] : 'after_add_to_cart';
 			$_product                        = wc_get_product( $product_id );
-			$qv_ajax_add_to_cart             = $_product->is_type( 'external' ) ? '""' : sp_wqv_get_option( 'wqvpro_aj_add_to_cart' );
+			$qv_ajax_add_to_cart             = $_product->is_type( 'external' ) ? false : (bool) sp_wqv_get_option( 'wqvpro_aj_add_to_cart' );
 			$quick_view_icon                 = '';
 			if ( 'font_icon' === $quick_view_button_icon_option ) {
-				$quick_view_icon = ! empty( $quick_view_button_font_icon ) ? '<i class="wqv-icon ' . $quick_view_button_font_icon . '"></i>' : '';
+				$quick_view_icon = ! empty( $quick_view_button_font_icon ) ? '<i class="wqv-icon ' . esc_attr( $quick_view_button_font_icon ) . '"></i>' : '';
 			}
 
 			// Hide Quick View Button Label if the option is true.
 			if ( '1' === sp_wqv_get_option( 'wqvpro_quick_view_button_icon_only' ) ) {
 				$quick_view_button_text = '';
 			} else {
-				$quick_view_button_text = sp_wqv_get_option( 'wqvpro_quick_view_button_text' );
+				$quick_view_button_text = esc_html( sp_wqv_get_option( 'wqvpro_quick_view_button_text' ) );
 			}
 
 			// quick view button text & icon.
@@ -389,11 +389,22 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 			$button_class            = 'button_css_class' === $quick_view_button_style ? ' ' . sp_wqv_get_option( 'wqvpro_qv_button_css_class' ) : '';
 			$image_lightbox          = isset( $settings['wqvpro_product_image_lightbox'] ) ? $settings['wqvpro_product_image_lightbox'] : false;
 			$image_lightbox          = $image_lightbox ? 1 : 0;
-			$image_title             = ! empty( sp_wqv_get_option( 'wqvpro_qv_image_title' ) ) ? sp_wqv_get_option( 'wqvpro_qv_image_title' ) : 'false';
+			$image_title             = (bool) sp_wqv_get_option( 'wqvpro_qv_image_title' );
 
 			$outline = '';
 			if ( $product_id ) {
-				$outline .= '<a href="#" id="sp-wqv-view-button" class="button sp-wqv-view-button ' . $wqv_button_position . $button_class . '" data-id="' . esc_attr( $product_id ) . '" data-effect="' . sp_wqv_get_option( 'wqvpro_popup_effect' ) . '" data-wqv=\'{"close_button": ' . $close_button . ', "ajax_cart": ' . $qv_ajax_add_to_cart . ', "image_title" : ' . $image_title . ', "lightbox": ' . $image_lightbox . ',"preloader": ' . $preloader . ',"preloader_label": "' . $preloader_label . '" } \'>' . $quick_view_icon_and_text . '</a>';
+				$data_wqv = wp_json_encode(
+					array(
+						'close_button'    => (bool) $close_button,
+						'ajax_cart'       => $qv_ajax_add_to_cart,
+						'image_title'     => $image_title,
+						'lightbox'        => (bool) $image_lightbox,
+						'preloader'       => (bool) $preloader,
+						'preloader_label' => $preloader_label,
+					)
+				);
+
+				$outline .= '<a href="#" id="sp-wqv-view-button" class="button sp-wqv-view-button ' . esc_attr( $wqv_button_position . $button_class ) . '" data-id="' . esc_attr( $product_id ) . '" data-effect="' . esc_attr( sp_wqv_get_option( 'wqvpro_popup_effect' ) ) . '" data-wqv="' . esc_attr( $data_wqv ) . '">' . $quick_view_icon_and_text . '</a>';
 			}
 			return $outline;
 		}

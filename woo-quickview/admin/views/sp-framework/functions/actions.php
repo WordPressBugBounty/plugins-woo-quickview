@@ -62,6 +62,11 @@ if ( ! function_exists( 'sp_quick_view_get_icons' ) ) {
 	 */
 	function sp_quick_view_get_icons() {
 
+		// Capability check before nonce verification.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error();
+		}
+
 		if ( ! empty( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'spf_icon_nonce' ) ) {
 
 			ob_start();
@@ -76,7 +81,7 @@ if ( ! function_exists( 'sp_quick_view_get_icons' ) ) {
 
 					echo ( count( $icon_lists ) >= 2 ) ? '<div class="sp_wqvp-icon-title">' . wp_kses_post( $list['title'] ) . '</div>' : '';
 					foreach ( $list['icons'] as $icon ) {
-						echo '<a class="sp_wqvp-icon-tooltip" data-sp_wqvp-icon="' . $icon . '" title="' . $icon . '"><span class="sp_wqvp-icon sp_wqvp-selector"><i class="' . $icon . '"></i></span></a>'; // phpcs:ignore
+						echo '<a class="sp_wqvp-icon-tooltip" data-sp_wqvp-icon="' . esc_attr( $icon ) . '" title="' . esc_attr( $icon ) . '"><span class="sp_wqvp-icon sp_wqvp-selector"><i class="' . esc_attr( $icon ) . '"></i></span></a>';
 					}
 				}
 			} else {
@@ -97,7 +102,6 @@ if ( ! function_exists( 'sp_quick_view_get_icons' ) ) {
 				array(
 					'success' => false,
 					'error'   => esc_html__( 'Error while saving.', 'woo-quickview' ),
-					'debug'   => $_REQUEST,
 				)
 			);
 

@@ -3,11 +3,12 @@
  * Plugin Name:   Reno Quick View (formerly Quick View for WooCommerce)
  * Plugin URI:    https://shapedplugin.com/reno-quick-view?ref=1
  * Description:   <strong>Reno Quick View</strong> allows you to add a quick view button in product loop so that visitors to quickly view product information (using AJAX) in a nice modal without opening the product page.
- * Version:       2.3.2
+ * Version:       2.3.3
  * Author:        ShapedPlugin LLC
  * Author URI:    https://shapedplugin.com/
  * Text Domain:   woo-quickview
  * Domain Path:   /languages
+ * Requires at least: 5.3
  * Requires PHP:  7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 4.0
@@ -52,7 +53,7 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 		 *
 		 * @var string
 		 */
-		public $version = '2.3.2';
+		public $version = '2.3.3';
 
 		/**
 		 * Router
@@ -364,13 +365,18 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 			$wqv_button_position             = isset( $settings['wqvpro_quick_view_button_position'] ) ? $settings['wqvpro_quick_view_button_position'] : 'after_add_to_cart';
 			$_product                        = wc_get_product( $product_id );
 			$qv_ajax_add_to_cart             = $_product->is_type( 'external' ) ? false : (bool) sp_wqv_get_option( 'wqvpro_aj_add_to_cart' );
+			$quick_view_button_style         = sp_wqv_get_option( 'wqvpro_qv_button_style' );
 			$quick_view_icon                 = '';
-			if ( 'font_icon' === $quick_view_button_icon_option ) {
-				$quick_view_icon = ! empty( $quick_view_button_font_icon ) ? '<i class="wqv-icon ' . esc_attr( $quick_view_button_font_icon ) . '"></i>' : '';
+
+			// Button Style: label, icon or label_with_icon (old settings are migrated in update-2.3.3.php).
+			$button_display = in_array( $quick_view_button_style, array( 'label', 'icon', 'label_with_icon' ), true ) ? $quick_view_button_style : 'label_with_icon';
+
+			if ( 'label' !== $button_display && 'font_icon' === $quick_view_button_icon_option && ! empty( $quick_view_button_font_icon ) ) {
+				$quick_view_icon = '<i class="wqv-icon ' . esc_attr( $quick_view_button_font_icon ) . '"></i>';
 			}
 
-			// Hide Quick View Button Label if the option is true.
-			if ( '1' === sp_wqv_get_option( 'wqvpro_quick_view_button_icon_only' ) ) {
+			// Hide the label for the icon-only style.
+			if ( 'icon' === $button_display ) {
 				$quick_view_button_text = '';
 			} else {
 				$quick_view_button_text = esc_html( sp_wqv_get_option( 'wqvpro_quick_view_button_text' ) );
@@ -383,13 +389,13 @@ if ( ! class_exists( 'SP_Woo_Quick_View' ) && ! class_exists( 'SP_Woo_Quick_View
 				$wqv_button_position     .= ' wqv-right-icon';
 			}
 
-			$preloader               = isset( $settings['wqvpro_qv_preloader'] ) ? $settings['wqvpro_qv_preloader'] : true;
-			$preloader_label         = isset( $settings['wqvpro_loading_label'] ) ? $settings['wqvpro_loading_label'] : 'Loading...';
-			$quick_view_button_style = sp_wqv_get_option( 'wqvpro_qv_button_style' );
-			$button_class            = 'button_css_class' === $quick_view_button_style ? ' ' . sp_wqv_get_option( 'wqvpro_qv_button_css_class' ) : '';
-			$image_lightbox          = isset( $settings['wqvpro_product_image_lightbox'] ) ? $settings['wqvpro_product_image_lightbox'] : false;
-			$image_lightbox          = $image_lightbox ? 1 : 0;
-			$image_title             = (bool) sp_wqv_get_option( 'wqvpro_qv_image_title' );
+			$preloader        = isset( $settings['wqvpro_qv_preloader'] ) ? $settings['wqvpro_qv_preloader'] : true;
+			$preloader_label  = isset( $settings['wqvpro_loading_label'] ) ? $settings['wqvpro_loading_label'] : 'Loading...';
+			$button_css_class = sp_wqv_get_option( 'check_button_css_class' ) ? trim( (string) sp_wqv_get_option( 'wqvpro_qv_button_css_class' ) ) : '';
+			$button_class     = '' !== $button_css_class ? ' ' . $button_css_class : '';
+			$image_lightbox   = isset( $settings['wqvpro_product_image_lightbox'] ) ? $settings['wqvpro_product_image_lightbox'] : false;
+			$image_lightbox   = $image_lightbox ? 1 : 0;
+			$image_title      = (bool) sp_wqv_get_option( 'wqvpro_qv_image_title' );
 
 			$outline = '';
 			if ( $product_id ) {

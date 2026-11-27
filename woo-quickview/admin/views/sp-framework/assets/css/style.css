@@ -92,6 +92,17 @@
   white-space: nowrap;
 }
 
+.sp_wqv-header-inner .sp_wqv-version {
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #1A79BF;
+  background: #e3f0fa;
+  border-radius: 10px;
+}
+
 .sp_wqv-header-inner h1 small {
   font-size: 11px;
   font-weight: 500;
@@ -185,8 +196,8 @@
 .sp_wqv-field-button_set .sp_wqvp--active {
   z-index: 2;
   color: #fff;
-  border-color: #006799;
-  background-color: #0085ba;
+  border-color: #008ff0;
+  background-color: #008ff0;
 }
 
 .sp_wqv-field-button_set input {
@@ -1146,10 +1157,13 @@ td.shortcode.column-shortcode input {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  box-sizing: border-box;
+  height: auto;
   min-width: 20px;
   padding: 0 4px;
   color: #555;
   border: 1px solid #7e8993;
+  border-radius: 0;
   background-color: #f5f5f5;
 }
 
@@ -1209,6 +1223,7 @@ td.shortcode.column-shortcode input {
   text-align: center;
   margin: 0;
   padding: 0 8px;
+  border-color: #7e8993;
   border-radius: 0;
 }
 
@@ -3778,6 +3793,13 @@ Slider Field
 
 #sp_wqvp-modal-icon.sp_wqvp-modal .sp_wqvp-modal-content .sp_wqvp-modal-load:first-of-type a.sp_wqvp-icon-tooltip[data-sp_wqvp-icon*="(Pro)"] .sp_wqvp-icon:after {
   display: none;
+}
+
+.sp_wqvp-field-icon .button, .sp_wqvp-field-upload .button {
+  color: #2271b1!important;
+  margin-right: 5px;
+  border-color: #2271b1!important;
+  background: #f6f7f7!important;
 }
 
 /* Remove button style. */

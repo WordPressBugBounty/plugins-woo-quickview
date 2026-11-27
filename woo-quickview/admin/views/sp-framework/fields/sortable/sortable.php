@@ -57,7 +57,10 @@ if ( ! class_exists( 'SP_WQV_Framework_Field_sortable' ) ) {
 			if ( ! empty( $this->value ) ) {
 
 				foreach ( $this->value as $key => $value ) {
-					$pre_sortby[ $key ] = $pre_fields[ $key ];
+					// Skip saved keys that are not in the field list (e.g. settings saved by the Pro plugin).
+					if ( isset( $pre_fields[ $key ] ) ) {
+						$pre_sortby[ $key ] = $pre_fields[ $key ];
+					}
 				}
 
 				$diff = array_diff_key( $pre_fields, $this->value );

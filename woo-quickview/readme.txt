@@ -1,11 +1,11 @@
 === Quick View for WooCommerce – Reno QuickView ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: woocommerce popup, product quick view, woocommerce lightbox, woocommerce quick view, woocommerce modal
-Requires at least: 4.8
+Requires at least: 5.3
 Tested up to: 7.2
 Requires PHP: 7.4
 WC tested up to: 11.3
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPL v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -200,6 +200,15 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 
 == Changelog ==
+
+= 2.3.3 - Nov 27, 2026 =
+* Improved: One Button Style option to show the Quick View button as a label, an icon, or a label with an icon, and existing button settings move to it automatically.
+* Improved: The Quick View button settings are reorganized, and the Quick View Categories and Wishlist options moved to the General tab.
+* Improved: The Button CSS Class option moved to the Advanced tab, and existing button classes are kept.
+* Improved: Button border and padding settings are always available, with no extra checkbox to turn them on.
+* Improved: The minimum required WordPress version is now 5.3.
+* Updated: The language (.pot) file.
+* Tested: WordPress 7.2 and WooCommerce 11.3 compatibility.
 
 = 2.3.2 - Nov 20, 2026 =
 * Fixed: Security hardening for the quick view button, popup images, and admin settings actions.
@@ -451,3 +460,8 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 = 1.0 - Feb 02, 2019 =
 * First Release
+
+== Upgrade Notice ==
+
+= 2.3.3 =
+Quick View button settings now use one Button Style option. Your current button setup is moved to it automatically.

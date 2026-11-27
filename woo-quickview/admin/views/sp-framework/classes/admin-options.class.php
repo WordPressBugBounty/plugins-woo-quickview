@@ -722,6 +722,7 @@ if ( ! class_exists( 'SP_WQV_Framework_Options' ) ) {
 
 			echo '<div class="sp_wqv-header-left">';
 			echo '<h1>' . wp_kses_post( $this->args['framework_title'] ) . '</h1>';
+			echo defined( 'SP_WQV_VERSION' ) ? '<span class="sp_wqv-version">v' . esc_html( SP_WQV_VERSION ) . '</span>' : '';
 			echo '</div>';
 
 			echo '<div class="sp_wqv-header-right">';

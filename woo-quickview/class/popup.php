@@ -62,6 +62,12 @@ class SP_WQV_Popup {
 		$show_add_to_cart     = isset( $show_product_content['add_to_cart'] ) ? $show_product_content['add_to_cart'] : true;
 		$show_rating          = isset( $show_product_content['rating'] ) ? $show_product_content['rating'] : true;
 		$show_meta            = isset( $show_product_content['meta'] ) ? $show_product_content['meta'] : true;
+
+		// Settings saved by Pro split "meta" into Category, SKU, Tags and Availability; show meta if any of them is on.
+		$pro_meta_keys = array( 'category', 'sku', 'tags', 'product_availability' );
+		if ( is_array( $show_product_content ) && ! isset( $show_product_content['meta'] ) && array_intersect_key( $show_product_content, array_flip( $pro_meta_keys ) ) ) {
+			$show_meta = (bool) array_filter( array_intersect_key( $show_product_content, array_flip( $pro_meta_keys ) ) );
+		}
 		if ( $show_title ) {
 			add_action( 'wqv_product_content', 'woocommerce_template_single_title', 5 );
 		}

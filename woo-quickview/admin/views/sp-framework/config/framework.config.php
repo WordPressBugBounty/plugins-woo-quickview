@@ -87,11 +87,15 @@ SP_WQV_Framework::createSection(
 				),
 			),
 			array(
-				'id'       => 'wqvpro_quick_view_button_icon_only',
-				'type'     => 'checkbox',
-				'title'    => __( 'Hide Quick View Button Label', 'woo-quickview' ),
-				'subtitle' => __( 'Check to hide quick view button label.', 'woo-quickview' ),
-				'default'  => false,
+				'id'      => 'wqvpro_qv_button_style',
+				'type'    => 'button_set',
+				'title'   => __( 'Button Style', 'woo-quickview' ),
+				'options' => array(
+					'label'           => __( 'Label', 'woo-quickview' ),
+					'icon'            => __( 'Icon', 'woo-quickview' ),
+					'label_with_icon' => __( 'Label with Icon', 'woo-quickview' ),
+				),
+				'default' => 'label_with_icon',
 			),
 			array(
 				'id'         => 'wqvpro_quick_view_button_text',
@@ -99,16 +103,16 @@ SP_WQV_Framework::createSection(
 				'title'      => __( 'Quick View Button Label', 'woo-quickview' ),
 				'subtitle'   => __( 'Type quick view button custom label.', 'woo-quickview' ),
 				'default'    => 'Quick View',
-				'dependency' => array( 'wqvpro_quick_view_button_icon_only', '!=', 'true' ),
+				'dependency' => array( 'wqvpro_qv_button_style', 'any', 'label,label_with_icon', true ),
 			),
 
 			array(
-				'id'       => 'wqvpro_quick_view_button_icon_option',
-				'type'     => 'button_set',
-				'title'    => __( 'Button Icon', 'woo-quickview' ),
-				'subtitle' => __( 'Select quick view button icon option.', 'woo-quickview' ),
-				'radio'    => true,
-				'options'  => array(
+				'id'         => 'wqvpro_quick_view_button_icon_option',
+				'type'       => 'button_set',
+				'title'      => __( 'Button Icon', 'woo-quickview' ),
+				'subtitle'   => __( 'Select quick view button icon option.', 'woo-quickview' ),
+				'radio'      => true,
+				'options'    => array(
 					'font_icon'    => array(
 						'option_name' => __( 'Icon', 'woo-quickview' ),
 					),
@@ -116,11 +120,9 @@ SP_WQV_Framework::createSection(
 						'option_name' => __( 'Custom Icon', 'woo-quickview' ),
 						'pro_only'    => true,
 					),
-					'no'           => array(
-						'option_name' => __( 'None', 'woo-quickview' ),
-					),
 				),
-				'default'  => 'no',
+				'default'    => 'font_icon',
+				'dependency' => array( 'wqvpro_qv_button_style', '!=', 'label', true ),
 			),
 
 			array(
@@ -130,31 +132,20 @@ SP_WQV_Framework::createSection(
 				'subtitle'   => 'Select quick view button icon',
 				'text'       => false,
 				'default'    => 'sp_wqvp-icon-1',
-				'dependency' => array( 'wqvpro_quick_view_button_icon_option', '==', 'font_icon' ),
-			),
-			array(
-				'id'           => 'wqvpro_quick_view_button_custom_image',
-				'type'         => 'upload',
-				'button_title' => __( 'Upload', 'woo-quickview' ),
-				'title'        => __( 'Upload Custom Image', 'woo-quickview' ),
-				'subtitle'     => __( 'Upload your custom image as icon. Image format PNG is recommended.', 'woo-quickview' ),
-				'dependency'   => array( 'wqvpro_quick_view_button_icon_option', '==', 'custom_image' ),
+				'dependency' => array( 'wqvpro_quick_view_button_icon_option|wqvpro_qv_button_style', '==|!=', 'font_icon|label', true ),
 			),
 			array(
 				'id'         => 'wqvpro_quick_view_button_icon_position',
 				'type'       => 'button_set',
 				'title'      => __( 'Icon Position', 'woo-quickview' ),
 				'subtitle'   => __( 'Select icon position.', 'woo-quickview' ),
-				'dependency' => array( 'wqvpro_quick_view_button_icon_option|wqvpro_quick_view_button_icon_only', '!=|==', 'no|false' ),
 				'radio'      => true,
 				'options'    => array(
-					'icon_on_left'  => __(
-						'Icon on the left',
-						'woo-quickview'
-					),
+					'icon_on_left'  => __( 'Icon on the left', 'woo-quickview' ),
 					'icon_on_right' => __( 'Icon on the right', 'woo-quickview' ),
 				),
 				'default'    => 'icon_on_left',
+				'dependency' => array( 'wqvpro_qv_button_style', '==', 'label_with_icon', true ),
 			),
 			array(
 				'id'         => 'wqvpro_font_icon_size',
@@ -165,30 +156,21 @@ SP_WQV_Framework::createSection(
 				'unit'       => 'px',
 				'min'        => 0,
 				'max'        => 1000,
-				'dependency' => array( 'wqvpro_quick_view_button_icon_option', '==', 'font_icon' ),
+				'dependency' => array( 'wqvpro_quick_view_button_icon_option|wqvpro_qv_button_style', '==|any', 'font_icon|icon,label_with_icon', true ),
 			),
 			array(
-				'id'       => 'wqvpro_qv_button_style',
-				'type'     => 'button_set',
-				'title'    => __( 'Button Style', 'woo-quickview' ),
-				'subtitle' => __( 'Select quick view button style.', 'woo-quickview' ),
-				'options'  => array(
-					'custom_button'    => array(
-						'option_name' => __( 'Custom Button', 'woo-quickview' ),
-					),
-					'button_css_class' => array(
-						'option_name' => __( 'Button CSS Class', 'woo-quickview' ),
+				'id'      => 'wqvpro_button_color_type',
+				'type'    => 'button_set',
+				'title'   => __( 'Button Color Type', 'woo-quickview' ),
+				'radio'   => true,
+				'options' => array(
+					'solid'    => __( 'Solid', 'woo-quickview' ),
+					'gradient' => array(
+						'option_name' => __( 'Gradient', 'woo-quickview' ),
+						'pro_only'    => true,
 					),
 				),
-				'default'  => 'custom_button',
-			),
-			array(
-				'id'         => 'wqvpro_qv_button_css_class',
-				'type'       => 'text',
-				'title'      => __( 'Add Button CSS Class Name(s)', 'woo-quickview' ),
-				'subtitle'   => __( 'Type quick view button class label.', 'woo-quickview' ),
-				'default'    => ' ',
-				'dependency' => array( 'wqvpro_qv_button_style', '==', 'button_css_class' ),
+				'default' => 'solid',
 			),
 			array(
 				'id'       => 'wqvpro_quick_view_button_color',
@@ -208,13 +190,7 @@ SP_WQV_Framework::createSection(
 					'color4' => '#176AA6',
 				),
 			),
-			array(
-				'id'       => 'wqvpro_add_button_border',
-				'type'     => 'checkbox',
-				'title'    => __( 'Add Button Border', 'woo-quickview' ),
-				'subtitle' => __( 'Check to add border for the button.', 'woo-quickview' ),
-				'default'  => false,
-			),
+
 			array(
 				'id'          => 'wqvpro_quick_view_button_border',
 				'type'        => 'border',
@@ -234,28 +210,19 @@ SP_WQV_Framework::createSection(
 				),
 				'hover_color' => true,
 				'all'         => true,
-				'dependency'  => array( 'wqvpro_add_button_border', '==', 'true' ),
 			),
 			array(
-				'id'       => 'wqvpro_add_button_padding',
-				'type'     => 'checkbox',
-				'title'    => __( 'Add Button Padding', 'woo-quickview' ),
-				'subtitle' => __( 'Check to add padding for the button.', 'woo-quickview' ),
-				'default'  => false,
-			),
-			array(
-				'id'         => 'wqvpro_quick_view_button_padding',
-				'type'       => 'spacing',
-				'title'      => __( 'Button Padding', 'woo-quickview' ),
-				'subtitle'   => __( 'Set quick view button padding.', 'woo-quickview' ),
-				'bottom'     => false,
-				'right'      => false,
-				'default'    => array(
+				'id'       => 'wqvpro_quick_view_button_padding',
+				'type'     => 'spacing',
+				'title'    => __( 'Button Padding', 'woo-quickview' ),
+				'subtitle' => __( 'Set quick view button padding.', 'woo-quickview' ),
+				'bottom'   => false,
+				'right'    => false,
+				'default'  => array(
 					'top'  => '9',
 					'left' => '16',
 				),
-				'units'      => array( 'px' ),
-				'dependency' => array( 'wqvpro_add_button_padding', '==', 'true' ),
+				'units'    => array( 'px' ),
 			),
 			array(
 				'id'       => 'wqvpro_qv_button_transition',
@@ -268,7 +235,6 @@ SP_WQV_Framework::createSection(
 				'unit'     => 's',
 				'default'  => .5,
 			),
-
 			array(
 				'id'         => 'wqvpro_qv_product_name_or_image',
 				'type'       => 'switcher',
@@ -280,8 +246,28 @@ SP_WQV_Framework::createSection(
 				'text_width' => 95,
 				'default'    => false,
 			),
-
-
+			array(
+				'id'       => 'wqvpro_quick_view_categories',
+				'type'     => 'select',
+				'title'    => __( 'Quick View Categories', 'woo-quickview' ),
+				'subtitle' => __( 'Show the Quick View button only for products in selected categories.', 'woo-quickview' ),
+				'options'  => array(
+					'all'      => __( 'All', 'woo-quickview' ),
+					'specific' => __( 'Specific(Pro)', 'woo-quickview' ),
+				),
+				'default'  => 'all',
+			),
+			array(
+				'id'         => 'wqvpro_enable_on_wishlist',
+				'type'       => 'switcher',
+				'class'      => 'only_pro',
+				'title'      => __( 'Enable Quick View on Wishlist', 'woo-quickview' ),
+				'subtitle'   => __( 'Enable/Disable quick view on wishlist.', 'woo-quickview' ),
+				'default'    => false,
+				'text_on'    => __( 'Enabled', 'woo-quickview' ),
+				'text_off'   => __( 'Disabled ', 'woo-quickview' ),
+				'text_width' => 95,
+			),
 		), // end: fields.
 	)
 );
@@ -306,26 +292,26 @@ SP_WQV_Framework::createSection(
 				'radio'      => true,
 				'options'    => array(
 					'modal_window'     => array(
-						'image'       => SP_WQV_URL . 'admin/views/img/Modal-Window.svg',
+						'image'       => SP_WQV_URL . 'admin/views/img/modal-type/modal-window.svg',
 						'option_name' => __( 'Modal Window', 'woo-quickview' ),
 					),
 					'slide_ins_right'  => array(
-						'image'       => SP_WQV_URL . 'admin/views/img/Slide-Ins-Right.svg',
+						'image'       => SP_WQV_URL . 'admin/views/img/modal-type/slide-ins-right.svg',
 						'option_name' => __( 'Slide-Ins Right', 'woo-quickview' ),
 						'pro_only'    => true,
 					),
 					'slide_ins_center' => array(
-						'image'       => SP_WQV_URL . 'admin/views/img/Slide-Ins-Center.svg',
+						'image'       => SP_WQV_URL . 'admin/views/img/modal-type/slide-ins-center.svg',
 						'option_name' => __( 'Slide-Ins-Center', 'woo-quickview' ),
 						'pro_only'    => true,
 					),
 					'slide_ins_left'   => array(
-						'image'       => SP_WQV_URL . 'admin/views/img/Slide-Ins-Left.svg',
+						'image'       => SP_WQV_URL . 'admin/views/img/modal-type/slide-ins-left.svg',
 						'option_name' => __( 'Slide-Ins Left', 'woo-quickview' ),
 						'pro_only'    => true,
 					),
 					'cascading'        => array(
-						'image'       => SP_WQV_URL . 'admin/views/img/Cascading.svg',
+						'image'       => SP_WQV_URL . 'admin/views/img/modal-type/cascading.svg',
 						'option_name' => __( 'Cascading', 'woo-quickview' ),
 						'pro_only'    => true,
 					),
@@ -404,17 +390,6 @@ SP_WQV_Framework::createSection(
 					'qvpro-slide-in-left'  => __( 'Slide Left(Pro)', 'woo-quickview' ),
 					'qvpro-slide-in-right' => __( 'Slide Right(Pro)', 'woo-quickview' ),
 				),
-			),
-			array(
-				'id'       => 'wqvpro_quick_view_categories',
-				'type'     => 'select',
-				'title'    => __( 'Quick View Categories', 'woo-quickview' ),
-				'subtitle' => __( 'Show the Quick View button only for products in selected categories.', 'woo-quickview' ),
-				'options'  => array(
-					'all'      => __( 'All', 'woo-quickview' ),
-					'specific' => __( 'Specific(Pro)', 'woo-quickview' ),
-				),
-				'default'  => 'all',
 			),
 			array(
 				'id'      => 'wqvpro_modal_z_index',
@@ -634,17 +609,6 @@ SP_WQV_Framework::createSection(
 				'dependency' => array( 'rating', '==', 'true' ),
 			),
 			array(
-				'id'         => 'wqvpro_enable_on_wishlist',
-				'type'       => 'switcher',
-				'class'      => 'only_pro',
-				'title'      => __( 'Enable Quick View on Wishlist', 'woo-quickview' ),
-				'subtitle'   => __( 'Enable/Disable quick view on wishlist.', 'woo-quickview' ),
-				'default'    => false,
-				'text_on'    => __( 'Enabled', 'woo-quickview' ),
-				'text_off'   => __( 'Disabled ', 'woo-quickview' ),
-				'text_width' => 95,
-			),
-			array(
 				'id'      => 'wqvpro_qv_subheading',
 				'type'    => 'subheading',
 				'content' => __( 'Modal Thumbnails Gallery Slider', 'woo-quickview' ),
@@ -847,6 +811,21 @@ SP_WQV_Framework::createSection(
 				'text_off'   => __( 'Hide', 'woo-quickview' ),
 				'text_width' => 75,
 				'default'    => false,
+			),
+			array(
+				'id'         => 'check_button_css_class',
+				'type'       => 'checkbox',
+				'title'      => __( 'Button CSS Class', 'woo-quickview' ),
+				'help_title' => __( 'Check to add additional class attribute in the quick view button.', 'woo-quickview' ),
+				'default'    => false,
+			),
+			array(
+				'id'         => 'wqvpro_qv_button_css_class',
+				'type'       => 'text',
+				'title'      => __( 'Add Button CSS Class Name(s)', 'woo-quickview' ),
+				'subtitle'   => __( 'Type quick view button class label.', 'woo-quickview' ),
+				'default'    => ' ',
+				'dependency' => array( 'check_button_css_class', '==', 'true', true ),
 			),
 			array(
 				'id'       => 'wqvpro_custom_css',
